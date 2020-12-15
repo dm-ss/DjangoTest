@@ -1,0 +1,2328 @@
+2020-12-12 17:04:58,300,4569,django.request,ERROR,log.py:230,Internal Server Error: /admin/auth/user/add/
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/backends/mysql/base.py", line 73, in execute
+    return self.cursor.execute(query, args)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/cursors.py", line 163, in execute
+    result = self._query(query)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/cursors.py", line 321, in _query
+    conn.query(q)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/connections.py", line 505, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/connections.py", line 724, in _read_query_result
+    result.read()
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/connections.py", line 1069, in read
+    first_packet = self.connection._read_packet()
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/connections.py", line 676, in _read_packet
+    packet.raise_for_error()
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/protocol.py", line 223, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/err.py", line 107, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.ProgrammingError: (1146, "Table 'api_test.api_test_userprofile' doesn't exist")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/contrib/admin/options.py", line 614, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/utils/decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/decorators/cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/contrib/admin/sites.py", line 233, in inner
+    return view(request, *args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/utils/decorators.py", line 43, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/decorators/debug.py", line 89, in sensitive_post_parameters_wrapper
+    return view(request, *args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/utils/decorators.py", line 43, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/utils/decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/contrib/auth/admin.py", line 99, in add_view
+    return self._add_view(request, form_url, extra_context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/contrib/auth/admin.py", line 126, in _add_view
+    return super().add_view(request, form_url, extra_context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/contrib/admin/options.py", line 1653, in add_view
+    return self.changeform_view(request, None, form_url, extra_context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/utils/decorators.py", line 43, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/utils/decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/contrib/admin/options.py", line 1534, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/contrib/admin/options.py", line 1581, in _changeform_view
+    self.save_related(request, form, formsets, not add)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/contrib/admin/options.py", line 1121, in save_related
+    self.save_formset(request, form, formset, change=change)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/contrib/admin/options.py", line 1109, in save_formset
+    formset.save()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/forms/models.py", line 673, in save
+    return self.save_existing_objects(commit) + self.save_new_objects(commit)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/forms/models.py", line 811, in save_new_objects
+    self.new_objects.append(self.save_new(form, commit=commit))
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/forms/models.py", line 951, in save_new
+    return super().save_new(form, commit=commit)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/forms/models.py", line 650, in save_new
+    return form.save(commit=commit)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/forms/models.py", line 460, in save
+    self.instance.save()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/base.py", line 754, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/base.py", line 792, in save_base
+    force_update, using, update_fields,
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/base.py", line 895, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/base.py", line 935, in _do_insert
+    using=using, raw=raw,
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/query.py", line 1254, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/sql/compiler.py", line 1397, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/backends/utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/backends/utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/backends/utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/backends/mysql/base.py", line 73, in execute
+    return self.cursor.execute(query, args)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/cursors.py", line 163, in execute
+    result = self._query(query)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/cursors.py", line 321, in _query
+    conn.query(q)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/connections.py", line 505, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/connections.py", line 724, in _read_query_result
+    result.read()
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/connections.py", line 1069, in read
+    first_packet = self.connection._read_packet()
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/connections.py", line 676, in _read_packet
+    packet.raise_for_error()
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/protocol.py", line 223, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/err.py", line 107, in raise_mysql_exception
+    raise errorclass(errno, errval)
+django.db.utils.ProgrammingError: (1146, "Table 'api_test.api_test_userprofile' doesn't exist")
+2020-12-12 17:04:58,319,4569,django.server,ERROR,basehttp.py:157,"POST /admin/auth/user/add/ HTTP/1.1" 500 304108
+2020-12-12 19:26:21,331,4569,django.request,ERROR,log.py:230,Internal Server Error: /api/project/project_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/fields.py", line 454, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/fields.py", line 94, in get_attribute
+    instance = getattr(instance, attr)
+AttributeError: 'NoneType' object has no attribute 'first_name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 505, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 465, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 476, in raise_uncaught_exception
+    raise exc
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 502, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jingyugao/Downloads/programes/djangoTest/api_test/api/projectList.py", line 51, in get
+    return JsonResponse(data={"data": serialize.data,
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 760, in data
+    ret = super().data
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 260, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 678, in to_representation
+    self.child.to_representation(item) for item in iterable
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 678, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 516, in to_representation
+    attribute = field.get_attribute(instance)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/fields.py", line 487, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `user` on serializer `ProjectSerializer`.
+The serializer field might be named incorrectly and not match any attribute or key on the `Project` instance.
+Original exception text was: 'NoneType' object has no attribute 'first_name'.
+2020-12-12 19:26:21,337,4569,django.server,ERROR,basehttp.py:157,"GET /api/project/project_list?page=1&name= HTTP/1.1" 500 129665
+2020-12-12 19:27:11,984,4569,django.request,ERROR,log.py:230,Internal Server Error: /api/project/project_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/fields.py", line 454, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/fields.py", line 94, in get_attribute
+    instance = getattr(instance, attr)
+AttributeError: 'NoneType' object has no attribute 'first_name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 505, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 465, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 476, in raise_uncaught_exception
+    raise exc
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 502, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jingyugao/Downloads/programes/djangoTest/api_test/api/projectList.py", line 51, in get
+    return JsonResponse(data={"data": serialize.data,
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 760, in data
+    ret = super().data
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 260, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 678, in to_representation
+    self.child.to_representation(item) for item in iterable
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 678, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 516, in to_representation
+    attribute = field.get_attribute(instance)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/fields.py", line 487, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `user` on serializer `ProjectSerializer`.
+The serializer field might be named incorrectly and not match any attribute or key on the `Project` instance.
+Original exception text was: 'NoneType' object has no attribute 'first_name'.
+2020-12-12 19:27:11,985,4569,django.server,ERROR,basehttp.py:157,"GET /api/project/project_list?page=1&name= HTTP/1.1" 500 129665
+2020-12-12 19:28:13,003,14493,django.request,ERROR,log.py:230,Internal Server Error: /api/project/project_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/fields.py", line 454, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/fields.py", line 94, in get_attribute
+    instance = getattr(instance, attr)
+AttributeError: 'NoneType' object has no attribute 'first_name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 505, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 465, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 476, in raise_uncaught_exception
+    raise exc
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 502, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jingyugao/Downloads/programes/djangoTest/api_test/api/projectList.py", line 51, in get
+    return JsonResponse(data={"data": serialize.data,
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 760, in data
+    ret = super().data
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 260, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 678, in to_representation
+    self.child.to_representation(item) for item in iterable
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 678, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 516, in to_representation
+    attribute = field.get_attribute(instance)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/fields.py", line 487, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `user` on serializer `ProjectSerializer`.
+The serializer field might be named incorrectly and not match any attribute or key on the `Project` instance.
+Original exception text was: 'NoneType' object has no attribute 'first_name'.
+2020-12-12 19:28:13,009,14493,django.server,ERROR,basehttp.py:157,"GET /api/project/project_list?page=1&name= HTTP/1.1" 500 129665
+2020-12-13 13:28:07,367,18069,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/backends/mysql/base.py", line 73, in execute
+    return self.cursor.execute(query, args)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/cursors.py", line 163, in execute
+    result = self._query(query)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/cursors.py", line 321, in _query
+    conn.query(q)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/connections.py", line 505, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/connections.py", line 724, in _read_query_result
+    result.read()
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/connections.py", line 1069, in read
+    first_packet = self.connection._read_packet()
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/connections.py", line 676, in _read_packet
+    packet.raise_for_error()
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/protocol.py", line 223, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/err.py", line 107, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.ProgrammingError: (1146, "Table 'api_test.api_test_lyzdenvironment' doesn't exist")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 505, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 465, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 476, in raise_uncaught_exception
+    raise exc
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 502, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jingyugao/Downloads/programes/djangoTest/api_test/api/lyzdList.py", line 48, in get
+    total = paginator.num_pages  # 总页数
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/utils/functional.py", line 48, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/paginator.py", line 100, in num_pages
+    if self.count == 0 and not self.allow_empty_first_page:
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/utils/functional.py", line 48, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/paginator.py", line 94, in count
+    return c()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/query.py", line 411, in count
+    return self.query.get_count(using=self.db)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/sql/query.py", line 515, in get_count
+    number = obj.get_aggregation(using, ['__count'])['__count']
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/sql/query.py", line 500, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/sql/compiler.py", line 1156, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/backends/utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/backends/utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/backends/utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/backends/mysql/base.py", line 73, in execute
+    return self.cursor.execute(query, args)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/cursors.py", line 163, in execute
+    result = self._query(query)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/cursors.py", line 321, in _query
+    conn.query(q)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/connections.py", line 505, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/connections.py", line 724, in _read_query_result
+    result.read()
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/connections.py", line 1069, in read
+    first_packet = self.connection._read_packet()
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/connections.py", line 676, in _read_packet
+    packet.raise_for_error()
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/protocol.py", line 223, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/err.py", line 107, in raise_mysql_exception
+    raise errorclass(errno, errval)
+django.db.utils.ProgrammingError: (1146, "Table 'api_test.api_test_lyzdenvironment' doesn't exist")
+2020-12-13 13:28:07,395,18069,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1&name= HTTP/1.1" 500 223690
+2020-12-13 13:28:20,137,18069,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/backends/mysql/base.py", line 73, in execute
+    return self.cursor.execute(query, args)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/cursors.py", line 163, in execute
+    result = self._query(query)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/cursors.py", line 321, in _query
+    conn.query(q)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/connections.py", line 505, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/connections.py", line 724, in _read_query_result
+    result.read()
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/connections.py", line 1069, in read
+    first_packet = self.connection._read_packet()
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/connections.py", line 676, in _read_packet
+    packet.raise_for_error()
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/protocol.py", line 223, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/err.py", line 107, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.ProgrammingError: (1146, "Table 'api_test.api_test_lyzdenvironment' doesn't exist")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 505, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 465, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 476, in raise_uncaught_exception
+    raise exc
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 502, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jingyugao/Downloads/programes/djangoTest/api_test/api/lyzdList.py", line 48, in get
+    total = paginator.num_pages  # 总页数
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/utils/functional.py", line 48, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/paginator.py", line 100, in num_pages
+    if self.count == 0 and not self.allow_empty_first_page:
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/utils/functional.py", line 48, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/paginator.py", line 94, in count
+    return c()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/query.py", line 411, in count
+    return self.query.get_count(using=self.db)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/sql/query.py", line 515, in get_count
+    number = obj.get_aggregation(using, ['__count'])['__count']
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/sql/query.py", line 500, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/sql/compiler.py", line 1156, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/backends/utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/backends/utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/backends/utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/backends/mysql/base.py", line 73, in execute
+    return self.cursor.execute(query, args)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/cursors.py", line 163, in execute
+    result = self._query(query)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/cursors.py", line 321, in _query
+    conn.query(q)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/connections.py", line 505, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/connections.py", line 724, in _read_query_result
+    result.read()
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/connections.py", line 1069, in read
+    first_packet = self.connection._read_packet()
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/connections.py", line 676, in _read_packet
+    packet.raise_for_error()
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/protocol.py", line 223, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/err.py", line 107, in raise_mysql_exception
+    raise errorclass(errno, errval)
+django.db.utils.ProgrammingError: (1146, "Table 'api_test.api_test_lyzdenvironment' doesn't exist")
+2020-12-13 13:28:20,164,18069,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1&name= HTTP/1.1" 500 223625
+2020-12-13 13:36:34,343,18211,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 505, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 465, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 476, in raise_uncaught_exception
+    raise exc
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 502, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jingyugao/Downloads/programes/djangoTest/api_test/api/lyzdList.py", line 46, in get
+    obi = LyzdEnvironment.objects.all().order_by("id")
+NameError: name 'LyzdEnvironment' is not defined
+2020-12-13 13:36:34,346,18211,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1&name= HTTP/1.1" 500 87629
+2020-12-13 13:36:44,749,18211,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 505, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 465, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 476, in raise_uncaught_exception
+    raise exc
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 502, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jingyugao/Downloads/programes/djangoTest/api_test/api/lyzdList.py", line 46, in get
+    obi = LyzdEnvironment.objects.all().order_by("id")
+NameError: name 'LyzdEnvironment' is not defined
+2020-12-13 13:36:44,779,18211,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1&name= HTTP/1.1" 500 87629
+2020-12-13 13:36:48,166,18211,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 505, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 465, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 476, in raise_uncaught_exception
+    raise exc
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 502, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jingyugao/Downloads/programes/djangoTest/api_test/api/lyzdList.py", line 46, in get
+    obi = LyzdEnvironment.objects.all().order_by("id")
+NameError: name 'LyzdEnvironment' is not defined
+2020-12-13 13:36:48,167,18211,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1&name= HTTP/1.1" 500 87564
+2020-12-13 13:39:19,851,18243,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 202, in _get_response
+    response = response.render()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/renderers.py", line 724, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/renderers.py", line 680, in get_context
+    'content': self.get_content(renderer, data, accepted_media_type, renderer_context),
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/renderers.py", line 413, in get_content
+    content = renderer.render(data, accepted_media_type, renderer_context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/renderers.py", line 103, in render
+    allow_nan=not self.strict, separators=separators
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 201, in encode
+    chunks = list(chunks)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 430, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 404, in _iterencode_dict
+    yield from chunks
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 404, in _iterencode_dict
+    yield from chunks
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 437, in _iterencode
+    o = _default(o)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'Page' is not JSON serializable
+2020-12-13 13:39:19,854,18243,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1&name= HTTP/1.1" 500 144694
+2020-12-13 13:43:58,246,18271,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 202, in _get_response
+    response = response.render()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/renderers.py", line 724, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/renderers.py", line 680, in get_context
+    'content': self.get_content(renderer, data, accepted_media_type, renderer_context),
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/renderers.py", line 413, in get_content
+    content = renderer.render(data, accepted_media_type, renderer_context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/renderers.py", line 103, in render
+    allow_nan=not self.strict, separators=separators
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 201, in encode
+    chunks = list(chunks)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 430, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 404, in _iterencode_dict
+    yield from chunks
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 404, in _iterencode_dict
+    yield from chunks
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 437, in _iterencode
+    o = _default(o)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'Page' is not JSON serializable
+2020-12-13 13:43:58,250,18271,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1&name= HTTP/1.1" 500 144694
+2020-12-13 13:47:11,745,18271,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 202, in _get_response
+    response = response.render()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/renderers.py", line 103, in render
+    allow_nan=not self.strict, separators=separators
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'Page' is not JSON serializable
+2020-12-13 13:47:11,748,18271,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1 HTTP/1.1" 500 97570
+2020-12-13 13:47:35,807,18271,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 202, in _get_response
+    response = response.render()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/renderers.py", line 103, in render
+    allow_nan=not self.strict, separators=separators
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'Page' is not JSON serializable
+2020-12-13 13:47:35,809,18271,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1 HTTP/1.1" 500 97570
+2020-12-13 13:50:02,083,18327,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 202, in _get_response
+    response = response.render()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/renderers.py", line 103, in render
+    allow_nan=not self.strict, separators=separators
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'Page' is not JSON serializable
+2020-12-13 13:50:02,088,18327,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1 HTTP/1.1" 500 97570
+2020-12-13 13:51:00,645,18338,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 202, in _get_response
+    response = response.render()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/renderers.py", line 103, in render
+    allow_nan=not self.strict, separators=separators
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'Page' is not JSON serializable
+2020-12-13 13:51:00,651,18338,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1 HTTP/1.1" 500 97570
+2020-12-13 13:52:21,609,18351,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 202, in _get_response
+    response = response.render()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/renderers.py", line 103, in render
+    allow_nan=not self.strict, separators=separators
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'Page' is not JSON serializable
+2020-12-13 13:52:21,618,18351,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1 HTTP/1.1" 500 97526
+2020-12-13 13:56:58,230,18351,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 202, in _get_response
+    response = response.render()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/renderers.py", line 103, in render
+    allow_nan=not self.strict, separators=separators
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'Page' is not JSON serializable
+2020-12-13 13:56:58,234,18351,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1 HTTP/1.1" 500 96771
+2020-12-13 13:57:13,849,18351,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 202, in _get_response
+    response = response.render()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/renderers.py", line 103, in render
+    allow_nan=not self.strict, separators=separators
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'Page' is not JSON serializable
+2020-12-13 13:57:13,851,18351,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1 HTTP/1.1" 500 96771
+2020-12-13 13:58:51,462,18412,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 202, in _get_response
+    response = response.render()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/renderers.py", line 103, in render
+    allow_nan=not self.strict, separators=separators
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'Page' is not JSON serializable
+2020-12-13 13:58:51,466,18412,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1 HTTP/1.1" 500 96815
+2020-12-13 13:59:33,729,18431,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 505, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 465, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 476, in raise_uncaught_exception
+    raise exc
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 502, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jingyugao/Downloads/programes/djangoTest/api_test/api/lyzdList.py", line 52, in get
+    print(obi)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/query.py", line 266, in __repr__
+    return '<%s %r>' % (self.__class__.__name__, data)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/base.py", line 519, in __repr__
+    return '<%s: %s>' % (self.__class__.__name__, self)
+  File "/Users/jingyugao/Downloads/programes/djangoTest/api_test/models.py", line 206, in __str__
+    return self.name
+AttributeError: 'Sys_Environment' object has no attribute 'name'
+2020-12-13 13:59:33,733,18431,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1 HTTP/1.1" 500 98450
+2020-12-13 14:00:44,096,18448,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 505, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 465, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 476, in raise_uncaught_exception
+    raise exc
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 502, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jingyugao/Downloads/programes/djangoTest/api_test/api/lyzdList.py", line 52, in get
+    print(obi)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/query.py", line 266, in __repr__
+    return '<%s %r>' % (self.__class__.__name__, data)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/base.py", line 519, in __repr__
+    return '<%s: %s>' % (self.__class__.__name__, self)
+  File "/Users/jingyugao/Downloads/programes/djangoTest/api_test/models.py", line 206, in __str__
+    return self.name
+AttributeError: 'Sys_Environment' object has no attribute 'name'
+2020-12-13 14:00:44,102,18448,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1 HTTP/1.1" 500 98618
+2020-12-13 14:02:16,483,18451,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 505, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 465, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 476, in raise_uncaught_exception
+    raise exc
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 502, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jingyugao/Downloads/programes/djangoTest/api_test/api/lyzdList.py", line 52, in get
+    print(obi)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/query.py", line 266, in __repr__
+    return '<%s %r>' % (self.__class__.__name__, data)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/base.py", line 519, in __repr__
+    return '<%s: %s>' % (self.__class__.__name__, self)
+  File "/Users/jingyugao/Downloads/programes/djangoTest/api_test/models.py", line 206, in __str__
+    return self.name
+AttributeError: 'Sys_Environment' object has no attribute 'name'
+2020-12-13 14:02:16,486,18451,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1 HTTP/1.1" 500 98618
+2020-12-13 14:02:53,862,18460,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 505, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 465, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 476, in raise_uncaught_exception
+    raise exc
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 502, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jingyugao/Downloads/programes/djangoTest/api_test/api/lyzdList.py", line 52, in get
+    print(obi)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/query.py", line 266, in __repr__
+    return '<%s %r>' % (self.__class__.__name__, data)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/base.py", line 519, in __repr__
+    return '<%s: %s>' % (self.__class__.__name__, self)
+  File "/Users/jingyugao/Downloads/programes/djangoTest/api_test/models.py", line 206, in __str__
+    return self.name
+AttributeError: 'Sys_Environment' object has no attribute 'name'
+2020-12-13 14:02:53,865,18460,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1 HTTP/1.1" 500 98618
+2020-12-13 14:03:24,579,18464,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 202, in _get_response
+    response = response.render()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/renderers.py", line 103, in render
+    allow_nan=not self.strict, separators=separators
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'Page' is not JSON serializable
+2020-12-13 14:03:24,581,18464,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1 HTTP/1.1" 500 96815
+2020-12-13 14:07:57,335,18468,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 202, in _get_response
+    response = response.render()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/renderers.py", line 103, in render
+    allow_nan=not self.strict, separators=separators
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'Page' is not JSON serializable
+2020-12-13 14:07:57,337,18468,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1 HTTP/1.1" 500 97570
+2020-12-13 14:08:09,566,18468,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 202, in _get_response
+    response = response.render()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/renderers.py", line 103, in render
+    allow_nan=not self.strict, separators=separators
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'Page' is not JSON serializable
+2020-12-13 14:08:09,568,18468,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1 HTTP/1.1" 500 97570
+2020-12-13 14:09:24,948,18515,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 202, in _get_response
+    response = response.render()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/renderers.py", line 103, in render
+    allow_nan=not self.strict, separators=separators
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'Page' is not JSON serializable
+2020-12-13 14:09:24,953,18515,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1 HTTP/1.1" 500 97570
+2020-12-13 14:10:13,802,18528,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 202, in _get_response
+    response = response.render()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/renderers.py", line 103, in render
+    allow_nan=not self.strict, separators=separators
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'Page' is not JSON serializable
+2020-12-13 14:10:13,804,18528,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1 HTTP/1.1" 500 97570
+2020-12-13 14:10:42,857,18531,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 202, in _get_response
+    response = response.render()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/renderers.py", line 103, in render
+    allow_nan=not self.strict, separators=separators
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'Page' is not JSON serializable
+2020-12-13 14:10:42,859,18531,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1 HTTP/1.1" 500 97570
+2020-12-13 14:11:29,283,18548,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 202, in _get_response
+    response = response.render()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/renderers.py", line 103, in render
+    allow_nan=not self.strict, separators=separators
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'Page' is not JSON serializable
+2020-12-13 14:11:29,302,18548,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1 HTTP/1.1" 500 96815
+2020-12-13 14:12:02,125,18560,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 202, in _get_response
+    response = response.render()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/renderers.py", line 103, in render
+    allow_nan=not self.strict, separators=separators
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'Page' is not JSON serializable
+2020-12-13 14:12:02,129,18560,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1 HTTP/1.1" 500 96815
+2020-12-13 14:15:19,682,18560,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 202, in _get_response
+    response = response.render()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/renderers.py", line 103, in render
+    allow_nan=not self.strict, separators=separators
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'Page' is not JSON serializable
+2020-12-13 14:15:19,685,18560,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1 HTTP/1.1" 500 97570
+2020-12-13 14:17:25,732,18616,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 202, in _get_response
+    response = response.render()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/renderers.py", line 103, in render
+    allow_nan=not self.strict, separators=separators
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'Page' is not JSON serializable
+2020-12-13 14:17:25,776,18616,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1 HTTP/1.1" 500 96806
+2020-12-13 14:21:16,173,18705,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 202, in _get_response
+    response = response.render()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/renderers.py", line 103, in render
+    allow_nan=not self.strict, separators=separators
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'ListSerializer' is not JSON serializable
+2020-12-13 14:21:16,175,18705,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1 HTTP/1.1" 500 96980
+2020-12-13 14:24:35,722,18733,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 202, in _get_response
+    response = response.render()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/renderers.py", line 103, in render
+    allow_nan=not self.strict, separators=separators
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'ListSerializer' is not JSON serializable
+2020-12-13 14:24:35,726,18733,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1 HTTP/1.1" 500 97588
+2020-12-13 14:25:02,853,18744,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 202, in _get_response
+    response = response.render()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/renderers.py", line 103, in render
+    allow_nan=not self.strict, separators=separators
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'ListSerializer' is not JSON serializable
+2020-12-13 14:25:02,869,18744,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1 HTTP/1.1" 500 97588
+2020-12-13 14:27:08,596,18756,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 202, in _get_response
+    response = response.render()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/renderers.py", line 103, in render
+    allow_nan=not self.strict, separators=separators
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'ListSerializer' is not JSON serializable
+2020-12-13 14:27:08,599,18756,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1 HTTP/1.1" 500 96980
+2020-12-13 14:28:55,381,18767,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 202, in _get_response
+    response = response.render()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/renderers.py", line 103, in render
+    allow_nan=not self.strict, separators=separators
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'ListSerializer' is not JSON serializable
+2020-12-13 14:28:55,382,18767,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1 HTTP/1.1" 500 96980
+2020-12-13 14:37:10,214,18811,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 202, in _get_response
+    response = response.render()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/renderers.py", line 103, in render
+    allow_nan=not self.strict, separators=separators
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'ListSerializer' is not JSON serializable
+2020-12-13 14:37:10,220,18811,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1 HTTP/1.1" 500 96980
+2020-12-13 14:38:18,889,18827,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 202, in _get_response
+    response = response.render()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/renderers.py", line 103, in render
+    allow_nan=not self.strict, separators=separators
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'ListSerializer' is not JSON serializable
+2020-12-13 14:38:18,895,18827,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1 HTTP/1.1" 500 96980
+2020-12-13 14:40:28,485,18846,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 202, in _get_response
+    response = response.render()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/renderers.py", line 103, in render
+    allow_nan=not self.strict, separators=separators
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'ListSerializer' is not JSON serializable
+2020-12-13 14:40:28,490,18846,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1 HTTP/1.1" 500 96980
+2020-12-13 14:40:47,934,18856,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 505, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 465, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 476, in raise_uncaught_exception
+    raise exc
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 502, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jingyugao/Downloads/programes/djangoTest/api_test/api/lyzdList.py", line 70, in get
+    print(serialize)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 753, in __repr__
+    return representation.list_repr(self, indent=1)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/representation.py", line 99, in list_repr
+    if hasattr(child, 'fields'):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/utils/functional.py", line 48, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 363, in fields
+    for key, value in self.get_fields().items():
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 1063, in get_fields
+    source, info, model, depth
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 1208, in build_field
+    return self.build_unknown_field(field_name, model_class)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 1325, in build_unknown_field
+    (field_name, model_class.__name__)
+django.core.exceptions.ImproperlyConfigured: Field name `dev_desc` is not valid for model `Sys_Environment`.
+2020-12-13 14:40:47,962,18856,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1 HTTP/1.1" 500 121604
+2020-12-13 14:40:50,178,18856,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 505, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 465, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 476, in raise_uncaught_exception
+    raise exc
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 502, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jingyugao/Downloads/programes/djangoTest/api_test/api/lyzdList.py", line 70, in get
+    print(serialize)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 753, in __repr__
+    return representation.list_repr(self, indent=1)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/representation.py", line 99, in list_repr
+    if hasattr(child, 'fields'):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/utils/functional.py", line 48, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 363, in fields
+    for key, value in self.get_fields().items():
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 1063, in get_fields
+    source, info, model, depth
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 1208, in build_field
+    return self.build_unknown_field(field_name, model_class)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 1325, in build_unknown_field
+    (field_name, model_class.__name__)
+django.core.exceptions.ImproperlyConfigured: Field name `dev_desc` is not valid for model `Sys_Environment`.
+2020-12-13 14:40:50,180,18856,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1 HTTP/1.1" 500 121604
+2020-12-13 14:45:23,231,18886,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 505, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 465, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 476, in raise_uncaught_exception
+    raise exc
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 502, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jingyugao/Downloads/programes/djangoTest/api_test/api/lyzdList.py", line 69, in get
+    print(serialize)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 753, in __repr__
+    return representation.list_repr(self, indent=1)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/representation.py", line 99, in list_repr
+    if hasattr(child, 'fields'):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/utils/functional.py", line 48, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 363, in fields
+    for key, value in self.get_fields().items():
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 1063, in get_fields
+    source, info, model, depth
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 1208, in build_field
+    return self.build_unknown_field(field_name, model_class)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 1325, in build_unknown_field
+    (field_name, model_class.__name__)
+django.core.exceptions.ImproperlyConfigured: Field name `dev_desc` is not valid for model `Sys_Environment`.
+2020-12-13 14:45:23,234,18886,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1 HTTP/1.1" 500 120821
+2020-12-13 14:47:26,048,18903,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 505, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 465, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 476, in raise_uncaught_exception
+    raise exc
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 502, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jingyugao/Downloads/programes/djangoTest/api_test/api/lyzdList.py", line 69, in get
+    print(serialize)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 753, in __repr__
+    return representation.list_repr(self, indent=1)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/representation.py", line 99, in list_repr
+    if hasattr(child, 'fields'):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/utils/functional.py", line 48, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 363, in fields
+    for key, value in self.get_fields().items():
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 1063, in get_fields
+    source, info, model, depth
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 1208, in build_field
+    return self.build_unknown_field(field_name, model_class)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 1325, in build_unknown_field
+    (field_name, model_class.__name__)
+django.core.exceptions.ImproperlyConfigured: Field name `dev_desc` is not valid for model `Sys_Environment`.
+2020-12-13 14:47:26,050,18903,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1 HTTP/1.1" 500 120827
+2020-12-13 14:47:40,750,18903,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 505, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 465, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 476, in raise_uncaught_exception
+    raise exc
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 502, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jingyugao/Downloads/programes/djangoTest/api_test/api/lyzdList.py", line 69, in get
+    print(serialize)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 753, in __repr__
+    return representation.list_repr(self, indent=1)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/representation.py", line 99, in list_repr
+    if hasattr(child, 'fields'):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/utils/functional.py", line 48, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 363, in fields
+    for key, value in self.get_fields().items():
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 1063, in get_fields
+    source, info, model, depth
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 1208, in build_field
+    return self.build_unknown_field(field_name, model_class)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 1325, in build_unknown_field
+    (field_name, model_class.__name__)
+django.core.exceptions.ImproperlyConfigured: Field name `dev_desc` is not valid for model `Sys_Environment`.
+2020-12-13 14:47:40,761,18903,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1 HTTP/1.1" 500 120827
+2020-12-13 14:48:08,908,18910,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 202, in _get_response
+    response = response.render()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/renderers.py", line 103, in render
+    allow_nan=not self.strict, separators=separators
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'ListSerializer' is not JSON serializable
+2020-12-13 14:48:08,923,18910,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1 HTTP/1.1" 500 101041
+2020-12-13 14:48:22,884,18916,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 505, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 465, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 476, in raise_uncaught_exception
+    raise exc
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 502, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jingyugao/Downloads/programes/djangoTest/api_test/api/lyzdList.py", line 69, in get
+    print(serialize)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 753, in __repr__
+    return representation.list_repr(self, indent=1)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/representation.py", line 99, in list_repr
+    if hasattr(child, 'fields'):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/utils/functional.py", line 48, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 363, in fields
+    for key, value in self.get_fields().items():
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 1063, in get_fields
+    source, info, model, depth
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 1208, in build_field
+    return self.build_unknown_field(field_name, model_class)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 1325, in build_unknown_field
+    (field_name, model_class.__name__)
+django.core.exceptions.ImproperlyConfigured: Field name `dev_desc` is not valid for model `Sys_Environment`.
+2020-12-13 14:48:22,889,18916,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1 HTTP/1.1" 500 120827
+2020-12-13 14:48:46,176,18922,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 202, in _get_response
+    response = response.render()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/renderers.py", line 103, in render
+    allow_nan=not self.strict, separators=separators
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'ListSerializer' is not JSON serializable
+2020-12-13 14:48:46,184,18922,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1 HTTP/1.1" 500 101041
+2020-12-13 15:21:51,490,19001,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 202, in _get_response
+    response = response.render()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/renderers.py", line 103, in render
+    allow_nan=not self.strict, separators=separators
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'ListSerializer' is not JSON serializable
+2020-12-13 15:21:51,501,19001,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1 HTTP/1.1" 500 101041
+2020-12-13 15:26:37,511,19039,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 202, in _get_response
+    response = response.render()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/renderers.py", line 103, in render
+    allow_nan=not self.strict, separators=separators
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'ListSerializer' is not JSON serializable
+2020-12-13 15:26:37,513,19039,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1&name= HTTP/1.1" 500 101215
+2020-12-13 16:39:11,161,19683,django.request,ERROR,log.py:230,Internal Server Error: /api/project/add_environment
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 505, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 465, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 476, in raise_uncaught_exception
+    raise exc
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 502, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jingyugao/Downloads/programes/djangoTest/api_test/api/lyzdList.py", line 112, in post
+    Sys_Environment.objects.get(name=data["env_desc"])
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/query.py", line 418, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/query.py", line 942, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/query.py", line 962, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, *args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/query.py", line 969, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/sql/query.py", line 1358, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/sql/query.py", line 1380, in _add_q
+    split_subq=split_subq, check_filterable=check_filterable,
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/sql/query.py", line 1258, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/sql/query.py", line 1084, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/sql/query.py", line 1482, in names_to_path
+    "Choices are: %s" % (name, ", ".join(available)))
+django.core.exceptions.FieldError: Cannot resolve keyword 'name' into field. Choices are: LastUpdateTime, address, content, createTime, env_desc, id
+2020-12-13 16:39:11,180,19683,django.server,ERROR,basehttp.py:157,"POST /api/project/add_environment HTTP/1.1" 500 135921
+2020-12-13 16:42:28,363,19683,django.request,ERROR,log.py:230,Internal Server Error: /api/project/add_environment
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 505, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 465, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 476, in raise_uncaught_exception
+    raise exc
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 502, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jingyugao/Downloads/programes/djangoTest/api_test/api/lyzdList.py", line 112, in post
+    Sys_Environment.objects.get(name=data["env_desc"])
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/query.py", line 418, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/query.py", line 942, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/query.py", line 962, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, *args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/query.py", line 969, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/sql/query.py", line 1358, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/sql/query.py", line 1380, in _add_q
+    split_subq=split_subq, check_filterable=check_filterable,
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/sql/query.py", line 1258, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/sql/query.py", line 1084, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/sql/query.py", line 1482, in names_to_path
+    "Choices are: %s" % (name, ", ".join(available)))
+django.core.exceptions.FieldError: Cannot resolve keyword 'name' into field. Choices are: LastUpdateTime, address, content, createTime, env_desc, id
+2020-12-13 16:42:28,368,19683,django.server,ERROR,basehttp.py:157,"POST /api/project/add_environment HTTP/1.1" 500 136011
+2020-12-13 16:43:16,350,19739,django.request,ERROR,log.py:230,Internal Server Error: /api/project/add_environment
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 505, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 465, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 476, in raise_uncaught_exception
+    raise exc
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 502, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jingyugao/Downloads/programes/djangoTest/api_test/api/lyzdList.py", line 113, in post
+    Sys_Environment.objects.get(name=data["env_desc"])
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/query.py", line 418, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/query.py", line 942, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/query.py", line 962, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, *args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/query.py", line 969, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/sql/query.py", line 1358, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/sql/query.py", line 1380, in _add_q
+    split_subq=split_subq, check_filterable=check_filterable,
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/sql/query.py", line 1258, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/sql/query.py", line 1084, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/db/models/sql/query.py", line 1482, in names_to_path
+    "Choices are: %s" % (name, ", ".join(available)))
+django.core.exceptions.FieldError: Cannot resolve keyword 'name' into field. Choices are: LastUpdateTime, address, content, createTime, env_desc, id
+2020-12-13 16:43:16,354,19739,django.server,ERROR,basehttp.py:157,"POST /api/project/add_environment HTTP/1.1" 500 135925
+2020-12-13 20:28:59,900,20526,django.request,ERROR,log.py:230,Internal Server Error: /api/project/del_environment
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 505, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 465, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 476, in raise_uncaught_exception
+    raise exc
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 502, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jingyugao/Downloads/programes/djangoTest/api_test/api/lyzdList.py", line 233, in post
+    my_user_cron = CronTab(user=True)
+TypeError: __init__() got an unexpected keyword argument 'user'
+2020-12-13 20:28:59,903,20526,django.server,ERROR,basehttp.py:157,"POST /api/project/del_environment HTTP/1.1" 500 88655
+2020-12-13 20:30:12,863,20567,django.request,ERROR,log.py:230,Internal Server Error: /api/project/del_environment
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 505, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 465, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 476, in raise_uncaught_exception
+    raise exc
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 502, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jingyugao/Downloads/programes/djangoTest/api_test/api/lyzdList.py", line 234, in post
+    my_user_cron = CronTab(user=True)
+TypeError: __init__() got an unexpected keyword argument 'user'
+2020-12-13 20:30:12,865,20567,django.server,ERROR,basehttp.py:157,"POST /api/project/del_environment HTTP/1.1" 500 88655
+2020-12-13 21:32:04,764,21041,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 505, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 465, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 476, in raise_uncaught_exception
+    raise exc
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 502, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jingyugao/Downloads/programes/djangoTest/api_test/api/lyzdList.py", line 43, in get
+    print("env_desc  ----------------------"+env_desc)
+TypeError: must be str, not NoneType
+2020-12-13 21:32:04,768,21041,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1 HTTP/1.1" 500 87987
+2020-12-13 21:32:10,432,21041,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 505, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 465, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 476, in raise_uncaught_exception
+    raise exc
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 502, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jingyugao/Downloads/programes/djangoTest/api_test/api/lyzdList.py", line 43, in get
+    print("env_desc  ----------------------"+env_desc)
+TypeError: must be str, not NoneType
+2020-12-13 21:32:10,434,21041,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1 HTTP/1.1" 500 87987
+2020-12-13 21:32:46,743,21041,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 505, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 465, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 476, in raise_uncaught_exception
+    raise exc
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 502, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jingyugao/Downloads/programes/djangoTest/api_test/api/lyzdList.py", line 43, in get
+    print("env_desc  ----------------------"+env_desc)
+TypeError: must be str, not NoneType
+2020-12-13 21:32:46,744,21041,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1 HTTP/1.1" 500 87987
+2020-12-13 21:35:11,321,21041,django.request,ERROR,log.py:230,Internal Server Error: /api/project/environment_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 505, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 465, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 476, in raise_uncaught_exception
+    raise exc
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 502, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jingyugao/Downloads/programes/djangoTest/api_test/api/lyzdList.py", line 43, in get
+    print("env_desc  ----------------------"+env_desc)
+TypeError: must be str, not NoneType
+2020-12-13 21:35:11,323,21041,django.server,ERROR,basehttp.py:157,"GET /api/project/environment_list?page=1 HTTP/1.1" 500 87987
+2020-12-13 21:57:41,529,21149,root,ERROR,automationCase.py:1067,HTTPConnectionPool(host='127.0.0.1haisad', port=80): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x10e4b7a58>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known',))
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/urllib3/connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/urllib3/util/connection.py", line 57, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/socket.py", line 745, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/urllib3/connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/urllib3/connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/http/client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/http/client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/http/client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/http/client.py", line 1026, in _send_output
+    self.send(msg)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/http/client.py", line 964, in send
+    self.connect()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/urllib3/connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/urllib3/connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x10e4b7a58>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/requests/adapters.py", line 449, in send
+    timeout=timeout
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/urllib3/connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/urllib3/util/retry.py", line 399, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='127.0.0.1haisad', port=80): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x10e4b7a58>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/jingyugao/Downloads/programes/djangoTest/api_test/api/automationCase.py", line 1065, in post
+    _id=data["id"], project_id=data["project_id"])
+  File "/Users/jingyugao/Downloads/programes/djangoTest/api_test/common/confighttp.py", line 187, in test_api
+    code, response_data, header_data = post(header, url, request_parameter_type, parameter)
+  File "/Users/jingyugao/Downloads/programes/djangoTest/api_test/common/confighttp.py", line 310, in post
+    response = requests.post(url=address, data=data, headers=header, timeout=8)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/requests/api.py", line 116, in post
+    return request('post', url, data=data, json=json, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/requests/api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/requests/adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='127.0.0.1haisad', port=80): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x10e4b7a58>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known',))
+2020-12-13 21:57:41,529,21149,root,ERROR,automationCase.py:1067,HTTPConnectionPool(host='127.0.0.1haisad', port=80): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x10e647be0>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known',))
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/urllib3/connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/urllib3/util/connection.py", line 57, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/socket.py", line 745, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/urllib3/connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/urllib3/connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/http/client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/http/client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/http/client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/http/client.py", line 1026, in _send_output
+    self.send(msg)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/http/client.py", line 964, in send
+    self.connect()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/urllib3/connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/urllib3/connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x10e647be0>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/requests/adapters.py", line 449, in send
+    timeout=timeout
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/urllib3/connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/urllib3/util/retry.py", line 399, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='127.0.0.1haisad', port=80): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x10e647be0>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/jingyugao/Downloads/programes/djangoTest/api_test/api/automationCase.py", line 1065, in post
+    _id=data["id"], project_id=data["project_id"])
+  File "/Users/jingyugao/Downloads/programes/djangoTest/api_test/common/confighttp.py", line 187, in test_api
+    code, response_data, header_data = post(header, url, request_parameter_type, parameter)
+  File "/Users/jingyugao/Downloads/programes/djangoTest/api_test/common/confighttp.py", line 310, in post
+    response = requests.post(url=address, data=data, headers=header, timeout=8)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/requests/api.py", line 116, in post
+    return request('post', url, data=data, json=json, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/requests/api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/requests/adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='127.0.0.1haisad', port=80): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x10e647be0>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known',))
+2020-12-14 09:22:28,562,22688,django.request,ERROR,log.py:230,Internal Server Error: /docs/
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/defaulttags.py", line 1034, in find_library
+    return parser.libraries[name]
+KeyError: 'staticfiles'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 202, in _get_response
+    response = response.render()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/rest_framework_swagger/renderers.py", line 59, in render
+    renderer_context
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/base.py", line 170, in render
+    return self._render(context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/base.py", line 905, in render_annotated
+    return self.render(context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/loader_tags.py", line 127, in render
+    compiled_parent = self.get_parent(context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/loader_tags.py", line 124, in get_parent
+    return self.find_template(parent, context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/loader_tags.py", line 104, in find_template
+    template_name, skip=history,
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/loaders/base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/defaulttags.py", line 1091, in load
+    lib = find_library(parser, name)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/defaulttags.py", line 1038, in find_library
+    name, "\n".join(sorted(parser.libraries)),
+django.template.exceptions.TemplateSyntaxError: 'staticfiles' is not a registered tag library. Must be one of:
+admin_list
+admin_modify
+admin_urls
+cache
+i18n
+l10n
+log
+rest_framework
+static
+suit_forms
+suit_list
+suit_menu
+suit_tags
+tz
+2020-12-14 09:22:28,573,22688,django.server,ERROR,basehttp.py:157,"GET /docs/ HTTP/1.1" 500 186534
+2020-12-14 09:22:52,484,22688,django.request,ERROR,log.py:230,Internal Server Error: /docs/
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/defaulttags.py", line 1034, in find_library
+    return parser.libraries[name]
+KeyError: 'staticfiles'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 202, in _get_response
+    response = response.render()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/rest_framework_swagger/renderers.py", line 59, in render
+    renderer_context
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/base.py", line 170, in render
+    return self._render(context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/base.py", line 905, in render_annotated
+    return self.render(context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/loader_tags.py", line 127, in render
+    compiled_parent = self.get_parent(context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/loader_tags.py", line 124, in get_parent
+    return self.find_template(parent, context)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/loader_tags.py", line 104, in find_template
+    template_name, skip=history,
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/loaders/base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/defaulttags.py", line 1091, in load
+    lib = find_library(parser, name)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/template/defaulttags.py", line 1038, in find_library
+    name, "\n".join(sorted(parser.libraries)),
+django.template.exceptions.TemplateSyntaxError: 'staticfiles' is not a registered tag library. Must be one of:
+admin_list
+admin_modify
+admin_urls
+cache
+i18n
+l10n
+log
+rest_framework
+static
+suit_forms
+suit_list
+suit_menu
+suit_tags
+tz
+2020-12-14 09:22:52,489,22688,django.server,ERROR,basehttp.py:157,"GET /docs/ HTTP/1.1" 500 186534
+2020-12-14 16:03:40,266,25712,django.request,ERROR,log.py:230,Internal Server Error: /api/project/interface_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 505, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 465, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 476, in raise_uncaught_exception
+    raise exc
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 502, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jingyugao/Downloads/programes/djangoTest/api_test/api/lyzdInterface.py", line 75, in get
+    print(serialize)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 753, in __repr__
+    return representation.list_repr(self, indent=1)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/representation.py", line 99, in list_repr
+    if hasattr(child, 'fields'):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/utils/functional.py", line 48, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 363, in fields
+    for key, value in self.get_fields().items():
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 1063, in get_fields
+    source, info, model, depth
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 1208, in build_field
+    return self.build_unknown_field(field_name, model_class)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 1325, in build_unknown_field
+    (field_name, model_class.__name__)
+django.core.exceptions.ImproperlyConfigured: Field name `interface_name_zh` is not valid for model `Sys_Environment`.
+2020-12-14 16:03:40,272,25712,django.server,ERROR,basehttp.py:157,"GET /api/project/interface_list?page=1 HTTP/1.1" 500 122249
+2020-12-14 16:06:09,798,25724,django.request,ERROR,log.py:230,Internal Server Error: /api/project/interface_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 505, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 465, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 476, in raise_uncaught_exception
+    raise exc
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 502, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jingyugao/Downloads/programes/djangoTest/api_test/api/lyzdInterface.py", line 75, in get
+    print(serialize)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 753, in __repr__
+    return representation.list_repr(self, indent=1)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/representation.py", line 99, in list_repr
+    if hasattr(child, 'fields'):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/utils/functional.py", line 48, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 363, in fields
+    for key, value in self.get_fields().items():
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 1063, in get_fields
+    source, info, model, depth
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 1208, in build_field
+    return self.build_unknown_field(field_name, model_class)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 1325, in build_unknown_field
+    (field_name, model_class.__name__)
+django.core.exceptions.ImproperlyConfigured: Field name `interface_name_zh` is not valid for model `Sys_Environment`.
+2020-12-14 16:06:09,861,25724,django.server,ERROR,basehttp.py:157,"GET /api/project/interface_list?page=1 HTTP/1.1" 500 122209
+2020-12-14 16:08:45,327,25746,django.request,ERROR,log.py:230,Internal Server Error: /api/project/interface_list
+Traceback (most recent call last):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 505, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 465, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 476, in raise_uncaught_exception
+    raise exc
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/views.py", line 502, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jingyugao/Downloads/programes/djangoTest/api_test/api/lyzdInterface.py", line 75, in get
+    print(serialize)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 753, in __repr__
+    return representation.list_repr(self, indent=1)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/utils/representation.py", line 99, in list_repr
+    if hasattr(child, 'fields'):
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/django/utils/functional.py", line 48, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 363, in fields
+    for key, value in self.get_fields().items():
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 1063, in get_fields
+    source, info, model, depth
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 1208, in build_field
+    return self.build_unknown_field(field_name, model_class)
+  File "/Users/jingyugao/Library/Python/3.6/lib/python/site-packages/rest_framework/serializers.py", line 1325, in build_unknown_field
+    (field_name, model_class.__name__)
+django.core.exceptions.ImproperlyConfigured: Field name `interface_name_cn` is not valid for model `Lyzd_Interface`.
+2020-12-14 16:08:45,329,25746,django.server,ERROR,basehttp.py:157,"GET /api/project/interface_list?page=1 HTTP/1.1" 500 126234
