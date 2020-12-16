@@ -6,12 +6,12 @@
             <li><div style="margin-left:40px;">试</div></li>
             <li><div style="margin-left:60px;">变</div></li>
             <li><div style="margin-left:80px;">得</div></li>
-            <li><div style="margin-left:100px;">轻</div></li>
-            <li><div style="margin-left:120px;">松</div></li>
+            <li><div style="margin-left:100px;">专</div></li>
+            <li><div style="margin-left:120px;">业</div></li>
         </ul>
         <div style="width:32%;height: auto;margin-left: 30%">
             <div class="title0">自动化测试平台</div>
-            <div class="title1">项目管理、接口管理、用例管理、测试报告、任务设置</div>
+            <div class="title1">接口管理、用例管理、用例执行、测试报告</div>
             <div class="lun-container">
                 <div class="carouse" id="carouse">
                     <div class="pic1"><img src="../../assets/page1_0.png" alt="pic1"></div>
@@ -22,10 +22,10 @@
             <img class="img-login" src="../../assets/page1_3.jpg"/>
         </div>
         <el-form :model="ruleForm2" :rules="rules2" ref="ruleForm2" label-position="left" label-width="0px" class="demo-ruleForm login-container">
-            <h3 class="title">系统登录</h3>
+            <h2 class="title">系统登录</h2>
             <el-tabs v-model="activeName" @tab-click="handleClick" :stretch="true">
 
-                <el-tab-pane label="账号登录" name="first">
+               <!-- <el-tab-pane label="账号登录" name="first">-->
                     <el-form-item prop="account">
                         <el-input type="text" v-model.trim="ruleForm2.account" auto-complete="off" placeholder="账号"></el-input>
                     </el-form-item>
@@ -37,10 +37,12 @@
                         <el-button type="primary" style="width:100%;" @click.native.prevent="handleSubmit2" :loading="logining">登录</el-button>
                         <!--<el-button @click.native.prevent="handleReset2">重置</el-button>-->
                     </el-form-item>
-                </el-tab-pane>
+                <!--</el-tab-pane>-->
+                <!-- 隐藏钉钉登陆功能，没有公网IP无法调试
                  <el-tab-pane label="钉钉登录" name="second">
                     <div id="login_container"></div>
                 </el-tab-pane>
+                -->
             </el-tabs>
         </el-form>
     </div>
@@ -227,7 +229,7 @@
         },
         mounted() {
             this.getVisitor();
-            this.carouselPicture();
+            this.carouselPicture();//旋转图片
             this.login_ding();
         }
     }
@@ -264,7 +266,7 @@
     .title {
       margin: 0px auto 40px auto;
       text-align: center;
-      color: #2ec0f6;
+      color: #599DF8;//调成和登陆按钮一个颜色
     }
     .remember {
       margin: 0px 0px 35px 0px;
@@ -353,13 +355,36 @@
         0%{
             transform: rotateY(0deg);
         }
+        10%{
+            transform: rotateY(-36deg);
+        }
+         20%{
+            transform: rotateY(-72deg);
+        }
+         30%{
+            transform: rotateY(-108deg);
+        }
+        40%{
+            transform: rotateY(-144deg);
+        }
+        50%{
+            transform: rotateY(-180deg);
+        }
 
-        33%{
-            transform: rotateY(-120deg);
+       60%{
+            transform: rotateY(-217deg);
 
         }
-        66%{
-            transform: rotateY(-240deg);
+        70%{
+            transform: rotateY(-252deg);
+
+        }
+        80%{
+            transform: rotateY(-288deg);
+
+        }
+        90%{
+            transform: rotateY(-324deg);
 
         }
         100%{
