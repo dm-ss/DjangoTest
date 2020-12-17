@@ -1,104 +1,124 @@
+<!-----页面代码开始----->
+<!--
+只做了页面展示，其他都没有改
+1数据库取值展示到下拉列表
+2加密不加密按钮对其他模块影响
+3依赖接口默认不可选，点前面的checkbox才可选，
+4删除操作及添加操作的js代码修改及编写
+5保存及取消按钮的页面跳转功能
+-->
 <template>
     <section>
-        <router-link :to="{ name: '接口列表', params: {project_id: this.$route.params.project_id}}" style='text-decoration: none;color: aliceblue;'>
-            <el-button class="return-list"><i class="el-icon-d-arrow-left" style="margin-right: 5px"></i>接口列表</el-button>
-        </router-link>
-        <router-link :to="{ name: '接口列表', params: {project_id: this.$route.params.project_id}}" style='text-decoration: none;color: aliceblue;'>
-            <el-button class="return-list" style="float: right">取消</el-button>
-        </router-link>
-        <el-button class="return-list" type="primary" style="float: right; margin-right: 15px" @click.native="addApiInfo">保存</el-button>
+        <br/>
         <el-form :model="form" ref="form" :rules="FormRules">
             <div style="border: 1px solid #e6e6e6;margin-bottom: 10px;padding:15px">
-                <el-form-item label="接口分组:" label-width="83px" prop="apiGroupLevelFirst_id">
-                    <el-select v-model="form.apiGroupLevelFirst_id" placeholder="请选择分组">
-
-                        <el-option v-for="(item,index) in group" :key="index+''" :label="item.name" :value="item.id"></el-option>
-                    </el-select>
-                </el-form-item>
-                <el-row :gutter="10">
+                <el-row :gutter="15">
                     <el-col :span='8'>
-                        <el-form-item label="接口名称:" label-width="83px" prop="name">
-                            <el-input v-model.trim="form.name" placeholder="名称" auto-complete></el-input>
-                        </el-form-item>
-                    </el-col>
-                    <el-col :span="10">
-                        <el-form-item label="状态:" label-width="72px">
-                            <el-select v-model="form.status" placeholder="接口状态">
-                                <el-option v-for="(item,index) in status" :key="index+''" :label="item.label" :value="item.value"></el-option>
-                            </el-select>
+                        <el-form-item label="所属项目:" label-width="83px" prop="apiGroupLevelFirst_id">
+                                <el-select v-model="form.apiGroupLevelFirst_id" placeholder="请选择项目">
+                                    <el-option v-for="(item,index) in group" :key="index+''" :label="item.name" :value="item.id"></el-option>
+                                </el-select>
+
+                            </el-form-item>
+                            </el-col>
+                            <el-col :span="8">
+                                <el-form-item label="类型分组:" label-width="83px" prop="apiGroupLevelFirst_id">
+                                        <el-select v-model="form.apiGroupLevelFirst_id" placeholder="请选择接口类型分组">
+                                            <el-option v-for="(item,index) in group" :key="index+''" :label="item.name" :value="item.id"></el-option>
+                                </el-select>
                         </el-form-item>
                     </el-col>
                 </el-row>
-                <el-row :gutter="10">
-                    <el-col :span="4">
-                        <el-form-item label="URL:" label-width="83px">
+                <el-row :gutter="15">
+                    <el-col :span="8">
+                        <el-form-item label="请求方式:" label-width="83px" name="qingqiufangshi">
                             <el-select v-model="form.requestType"  placeholder="请求方式" @change="checkRequest">
                                 <el-option v-for="(item,index) in request" :key="index+''" :label="item.label" :value="item.value"></el-option>
                             </el-select>
                         </el-form-item>
                     </el-col>
-                    <el-col :span="2">
-                        <el-form-item>
+                    <el-col :span="8">
+                        <el-form-item label="HTTP协议:" label-width="83px" name="xieyi">
                             <el-select v-model="form.httpType" placeholder="HTTP协议">
                                 <el-option v-for="(item,index) in Http" :key="index+''" :label="item.label" :value="item.value"></el-option>
                             </el-select>
                         </el-form-item>
                     </el-col>
-                    <el-col :span='18'>
-                        <el-form-item prop="apiAddress">
-                            <el-input v-model.trim="form.apiAddress" placeholder="地址" auto-complete></el-input>
+
+                </el-row>
+                <el-row :gutter="15">
+                    <el-col :span='8'>
+                        <el-form-item label="接口名称:" label-width="83px" prop="name">
+                            <el-input v-model.trim="form.name" placeholder="请输入接口名称" auto-complete></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="8">
+                        <el-form-item label="方法名称:" label-width="83px" prop="name">
+                            <el-input v-model.trim="form.name" placeholder="请输入方法名称" auto-complete></el-input>
                         </el-form-item>
                     </el-col>
                 </el-row>
+
+                <el-row :gutter="15">
+                    <el-col :span='8'>
+                        <el-form-item prop="apiAddress"  label="请求地址:" label-width="83px">
+                            <el-input v-model.trim="form.apiAddress" placeholder="请输入请求地址" auto-complete></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span='8'>
+                           <el-form-item label="Content-Tpye:" label-width="120px" prop="apiGroupLevelFirst_id">
+                                <el-select v-model="form.apiGroupLevelFirst_id" placeholder="请选择">
+                                    <el-option v-for="(item,index) in group" :key="index+''" :label="item.name" :value="item.id"></el-option>
+                                </el-select>
+
+                         </el-form-item>
+                    </el-col>
+                </el-row>
+
+
             </div>
-            <el-row :span="24">
+
+            <!--请求头-->
+            <el-row :span="22">
                 <el-collapse v-model="activeNames" @change="handleChange">
-                    <el-collapse-item title="请求头部" name="1">
-                        <el-table :data="form.headDict" highlight-current-row>
-                            <el-table-column prop="name" label="标签" min-width="20%" sortable>
-                                <template slot-scope="scope">
-                                    <el-select placeholder="head标签" filterable v-model="scope.row.name">
-                                        <el-option v-for="(item,index) in header" :key="index+''" :label="item.label" :value="item.value"></el-option>
-                                    </el-select>
-                                    <el-input class="selectInput" v-model.trim="scope.row.name" :value="scope.row.name" placeholder="请输入内容"></el-input>
-                                </template>
-                            </el-table-column>
-                            <el-table-column prop="value" label="内容" min-width="40%" sortable>
-                                <template slot-scope="scope">
-                                    <el-input v-model.trim="scope.row.value" :value="scope.row.value" placeholder="请输入内容"></el-input>
-                                </template>
-                            </el-table-column>
-                            <el-table-column label="操作" min-width="10%">
-                                <template slot-scope="scope">
-                                    <i class="el-icon-delete" style="font-size:30px;cursor:pointer;" @click="delHead(scope.$index)"></i>
-                                </template>
-                            </el-table-column>
-                            <el-table-column label="" min-width="10%">
-                                <template slot-scope="scope">
-                                    <el-button v-if="scope.$index===(form.headDict.length-1)" size="mini" class="el-icon-plus" @click="addHead"></el-button>
-                                </template>
-                            </el-table-column>
-                        </el-table>
-                    </el-collapse-item>
-                    <el-collapse-item title="请求参数" name="2">
+                    <el-collapse-item title="加密方式1" name="1">
                         <div style="margin: 5px">
                             <el-row :span="24">
-                                <el-col :span="4"><el-radio v-model="radio" label="form-data">表单(form-data)</el-radio></el-col>
-                                <el-col v-if="request3" :span="4"><el-radio v-model="radio" label="raw">源数据(raw)</el-radio></el-col>
-                                <el-col v-if="request3" :span="16"><el-checkbox v-model="radioType" label="3" v-show="ParameterTyep">表单转源数据</el-checkbox></el-col>
+                                <el-col :span="4"><el-radio v-model="radio" label="form-data">加密</el-radio></el-col>
+                                <el-col v-if="request3" :span="4"><el-radio v-model="radio" label="raw">不加密</el-radio></el-col>
+
                             </el-row>
                         </div>
-                        <el-table :data="form.requestList" highlight-current-row :class="ParameterTyep? 'parameter-a': 'parameter-b'">
-                            <el-table-column prop="name" label="参数名" min-width="25%" sortable>
+
+                           <!--form.requestList需重写词方法保证只有一个 -->
+                        <el-table :data="form.MiList" highlight-current-row :class="ParameterType? 'parameter-a': 'parameter-b'">
+                            <el-table-column prop="name" label="加密URL" min-width="40%" sortable>
                                 <template slot-scope="scope">
-                                    <el-input v-model.trim="scope.row.name" :value="scope.row.name" placeholder="请输入参数值"></el-input>
+                                    <el-input v-model.trim="scope.row.name" :value="scope.row.name" placeholder="请输入加密URL"></el-input>
                                 </template>
                             </el-table-column>
-                            <el-table-column prop="value" label="参数值" min-width="30%" sortable>
+                            <el-table-column prop="value" label="解密URL" min-width="40%" sortable>
                                 <template slot-scope="scope">
-                                    <el-input v-model.trim="scope.row.value" :value="scope.row.value" placeholder="请输入参数值"></el-input>
+                                    <el-input v-model.trim="scope.row.JMUrl" :value="scope.row.JMUrl" placeholder="请输入解密URL"></el-input>
                                 </template>
                             </el-table-column>
+
+                        </el-table>
+
+                    </el-collapse-item>
+                    <el-collapse-item title="请求Header2" name="2">
+                        <div style="margin: 5px">
+                            <el-row :span="24">
+
+                            </el-row>
+                        </div>
+                        <el-table :data="form.requestList" highlight-current-row :class="">
+                            <el-table-column prop="name" label="KEY" min-width="14%" sortable>
+                                <template slot-scope="scope">
+                                    <el-input v-model.trim="scope.row.name" :value="scope.row.name" placeholder="请输入KEY"></el-input>
+                                </template>
+                            </el-table-column>
+
                             <el-table-column prop="_type" label="参数类型" min-width="14%" sortable>
                                 <template slot-scope="scope">
                                     <el-select v-model="scope.row._type"  placeholder="请求方式">
@@ -106,64 +126,46 @@
                                     </el-select>
                                 </template>
                             </el-table-column>
-                            <el-table-column prop="description" label="参数说明" min-width="14%" sortable>
+                            <el-table-column prop="description" label="存在依赖" min-width="6%" sortable>
                                 <template slot-scope="scope">
-                                    <el-input v-model.trim="scope.row.description" :value="scope.row.desc" placeholder="请输入参数说明"></el-input>
-                                </template>
+
+                                    <el-col v-if="request3" :span="2"><el-checkbox >是</el-radio></el-col>
+                                  </template>
                             </el-table-column>
-                            <el-table-column label="操作" min-width="13%">
+                            <el-table-column prop="description" label="依赖接口" min-width="14%" sortable>
+                                <template slot-scope="scope">
+
+                                    <el-select v-model="scope.row._type" placeholder="依赖接口名称" >
+                                        <el-option v-for="(item,index) in paramTyep" :key="index+''" :label="item.label" :value="item.value"></el-option>
+                                    </el-select></template>
+                            </el-table-column>
+                            <el-table-column label="操作" min-width="5%">
                                 <template slot-scope="scope">
                                     <i class="el-icon-delete" style="font-size:30px;cursor:pointer;" @click="delParameter(scope.$index)"></i>
-                                    <el-button type="primary" size="mini" style="margin-bottom: 5px" @click="handleParameterEdit(scope.$index, scope.row)">更多设置</el-button>
-                                </template>
+                                   </template>
                             </el-table-column>
-                            <el-table-column label="" min-width="4%">
+                            <el-table-column label="" min-width="5%">
                                 <template slot-scope="scope">
                                     <el-button v-if="scope.$index===(form.requestList.length-1)" size="mini" class="el-icon-plus" @click="addParameter"></el-button>
                                 </template>
                             </el-table-column>
                         </el-table>
-                        <template>
-                            <el-input :class="ParameterTyep? 'parameter-b': 'parameter-a'" type="textarea" :rows="5" placeholder="请输入内容" v-model.trim="parameterRaw"></el-input>
-                        </template>
+
                     </el-collapse-item>
-                    <el-dialog title="更多设置" :visible.sync="addParameterFormVisible" :close-on-click-modal="false">
-                        <el-form :model="editForm" label-width="60px" :rules="FormRules" ref="editForm" >
-                            <el-form-item label="参数名" label-width="83px">
-                                <el-input v-model.trim="editForm.name" auto-complete="off" placeholder="请输入参数名称"></el-input>
-                            </el-form-item>
-                            <el-form-item label="参数值" label-width="83px">
-                                <el-input v-model.trim="editForm.value" auto-complete="off" placeholder="请输入参数值"></el-input>
-                            </el-form-item>
-                            <el-form-item label="必填?" label-width="83px" prop="required">
-                                <el-select v-model="editForm.required" placeholder="必填？">
-                                    <el-option v-for="(item,index) in required4" :key="index+''" :label="item.label" :value="item.value"></el-option>
-                                </el-select>
-                            </el-form-item>
-                            <el-form-item label="输入限制" prop='version' label-width="83px">
-                                <el-input v-model.trim="editForm.restrict" auto-complete="off" placeholder="请输入输入限制"></el-input>
-                            </el-form-item>
-                            <el-form-item label="描述" prop='description' label-width="83px">
-                                <el-input type="textarea" :rows="7" v-model.trim="editForm.description" placeholder="请输入描述"></el-input>
-                            </el-form-item>
-                        </el-form>
-                        <div slot="footer" class="dialog-footer">
-                            <el-button @click.native="addParameterFormVisible = false">取消</el-button>
-                            <el-button type="primary" @click.native="editParameterSubmit">保存</el-button>
+
+                   <el-collapse-item title="请求Body3" name="2">
+                        <div style="margin: 5px">
+                            <el-row :span="24">
+
+                            </el-row>
                         </div>
-                    </el-dialog>
-                    <el-collapse-item title="返回参数" name="3">
-                        <el-table :data="form.responseList" highlight-current-row>
-                            <el-table-column prop="name" label="参数名" min-width="25%" sortable>
+                        <el-table :data="form.requestList" highlight-current-row :class="">
+                            <el-table-column prop="name" label="KEY" min-width="14%" sortable>
                                 <template slot-scope="scope">
-                                    <el-input v-model.trim="scope.row.name" :value="scope.row.name" placeholder="请输入参数值"></el-input>
+                                    <el-input v-model.trim="scope.row.name" :value="scope.row.name" placeholder="请输入KEY"></el-input>
                                 </template>
                             </el-table-column>
-                            <el-table-column prop="value" label="参数值" min-width="30%" sortable>
-                                <template slot-scope="scope">
-                                    <el-input v-model.trim="scope.row.value" :value="scope.row.value" placeholder="请输入参数值"></el-input>
-                                </template>
-                            </el-table-column>
+
                             <el-table-column prop="_type" label="参数类型" min-width="14%" sortable>
                                 <template slot-scope="scope">
                                     <el-select v-model="scope.row._type"  placeholder="请求方式">
@@ -171,63 +173,67 @@
                                     </el-select>
                                 </template>
                             </el-table-column>
-                            <el-table-column prop="description" label="参数说明" min-width="14%" sortable>
+                            <el-table-column prop="description" label="存在依赖" min-width="6%" sortable>
                                 <template slot-scope="scope">
-                                    <el-input v-model.trim="scope.row.description" :value="scope.row.desc" placeholder="请输入参数说明"></el-input>
-                                </template>
+
+                                    <el-col v-if="request3" :span="2"><el-checkbox >是</el-radio></el-col>
+                                  </template>
                             </el-table-column>
-                            <el-table-column label="操作" min-width="13%">
+                            <el-table-column prop="description" label="依赖接口" min-width="14%" sortable>
                                 <template slot-scope="scope">
-                                    <i class="el-icon-delete" style="font-size:30px;cursor:pointer;" @click="delResponse(scope.$index)"></i>
-                                    <el-button type="primary" size="mini" style="margin-bottom: 5px" @click="handleResponseEdit(scope.$index, scope.row)">更多设置</el-button>
-                                </template>
+
+                                    <el-select v-model="scope.row._type" placeholder="依赖接口名称" >
+                                        <el-option v-for="(item,index) in paramTyep" :key="index+''" :label="item.label" :value="item.value"></el-option>
+                                    </el-select></template>
                             </el-table-column>
-                            <el-table-column label="" min-width="4%">
+                            <el-table-column label="操作" min-width="5%">
                                 <template slot-scope="scope">
-                                    <el-button v-if="scope.$index===(form.responseList.length-1)" size="mini" class="el-icon-plus" @click="addResponse"></el-button>
+                                    <i class="el-icon-delete" style="font-size:30px;cursor:pointer;" @click="delParameter(scope.$index)"></i>
+                                   </template>
+                            </el-table-column>
+                            <el-table-column label="" min-width="5%">
+                                <template slot-scope="scope">
+                                    <el-button v-if="scope.$index===(form.requestList.length-1)" size="mini" class="el-icon-plus" @click="addParameter"></el-button>
                                 </template>
                             </el-table-column>
                         </el-table>
+
                     </el-collapse-item>
-                    <el-dialog title="更多设置" :visible.sync="addResponseFormVisible" :close-on-click-modal="false">
-                        <el-form :model="editForm" label-width="60px" :rules="FormRules" ref="editForm" >
-                            <el-form-item label="参数名" prop="name" label-width="83px">
-                                <el-input v-model.trim="editForm.name" auto-complete="off" placeholder="请输入参数名称"></el-input>
-                            </el-form-item>
-                            <el-form-item label="参数值" prop="name" label-width="83px">
-                                <el-input v-model.trim="editForm.value" auto-complete="off" placeholder="请输入参数值"></el-input>
-                            </el-form-item>
-                            <el-form-item label="必填?" label-width="83px" prop="required">
-                                <el-select v-model="editForm.required" placeholder="必填？">
-                                    <el-option v-for="(item,index) in required4" :key="index+''" :label="item.label" :value="item.value"></el-option>
-                                </el-select>
-                            </el-form-item>
-                            <el-form-item label="描述" prop='description' label-width="83px">
-                                <el-input type="textarea" :rows="7" v-model.trim="editForm.description" placeholder="请输入描述"></el-input>
-                            </el-form-item>
-                        </el-form>
-                        <div slot="footer" class="dialog-footer">
-                            <el-button @click.native="addResponseFormVisible = false">取消</el-button>
-                            <el-button type="primary" @click.native="editResponseSubmit">保存</el-button>
-                        </div>
-                    </el-dialog>
-                    <el-collapse-item title="普通mock" name="4">
+
+
+
+
+                    <el-collapse-item title="入参示例4" name="4">
                         <el-card class="box-card">
-                            <div slot="header" class="clearfix">
-                                <el-select v-model="form.mockCode" placeholder="HTTP状态">
-                                    <el-option v-for="(item,index) in httpCode" :key="index+''" :label="item.label" :value="item.value"></el-option>
-                                </el-select>
-                            </div>
-                            <el-input v-model.trim="form.data" type="textarea" :rows="8" placeholder="请输入mock内容"></el-input>
+
+                            <el-input v-model.trim="form.data" type="textarea" :rows="5" placeholder="请输入入参示例"></el-input>
+                        </el-card>
+                    </el-collapse-item>
+                     <el-collapse-item title="出参示例5" name="5">
+                        <el-card class="box-card">
+
+                            <el-input v-model.trim="form.data" type="textarea" :rows="5" placeholder="请输入出参示例"></el-input>
                         </el-card>
                     </el-collapse-item>
                 </el-collapse>
             </el-row>
         </el-form>
+
+        <!--
+         <router-link :to="{ name: '接口列表', params: {project_id: this.$route.params.project_id}}" style='text-decoration: none;color: aliceblue;'>
+            <el-button class="return-list"><i class="el-icon-d-arrow-left" style="margin-right: 5px"></i>接口列表</el-button>
+        </router-link>-->
+        <router-link :to="{ name: '接口列表', params: {project_id: this.$route.params.project_id}}" style='text-decoration: none;color: aliceblue;'>
+            <el-button class="return-list" style="float: right">取消</el-button>
+        </router-link>
+        <el-button class="return-list" type="primary" style="float: right; margin-right: 15px" @click.native="addApiInfo">保存</el-button>
+
     </section>
 </template>
+<!-----页面代码结束----->
+<!-----脚本代码开始----->
 <script>
-    import { addApiDetail, getApiGroupList } from "../../../api/api";
+    import { addApiDetail, getApiGroupList } from "../../../../api/api";
 
     export default {
         data() {
@@ -239,62 +245,29 @@
                 Http: [{value: 'HTTP', label: 'HTTP'},
                     {value: 'HTTPS', label: 'HTTPS'}],
                 paramTyep: [{value: 'Int', label: 'Int'},
-                    {value: 'String', label: 'String'}],
+                    {value: 'String', label: 'String'},
+                    {value: 'Random', label: 'Random'},
+                    {value: 'Date', label: 'Date'}],
                 checkHeadList: [],
+        
                 checkParameterList: [],
-                ParameterTyep: true,
+                ParameterType: true,
                 group: [],
                 radio: "form-data",
                 secondGroup: [],
                 status: [{value: true, label: '启用'},
                     {value: false, label: '禁用'}],
                 header: [{value: 'Accept', label: 'Accept'},
-                    {value: 'Accept-Charset', label: 'Accept-Charset'},
-                    {value: 'Accept-Encoding', label: 'Accept-Encoding'},
-                    {value: 'Accept-Language', label: 'Accept-Language'},
-                    {value: 'Accept-Ranges', label: 'Accept-Ranges'},
-                    {value: 'Authorization', label: 'Authorization'},
-                    {value: 'Cache-Control', label: 'Cache-Control'},
-                    {value: 'Connection', label: 'Connection'},
-                    {value: 'Cookie', label: 'Cookie'},
-                    {value: 'Content-Length', label: 'Content-Length'},
-                    {value: 'Content-Type', label: 'Content-Type'},
-                    {value: 'Content-MD5', label: 'Content-MD5'},
-                    {value: 'Date', label: 'Date'},
-                    {value: 'Expect', label: 'Expect'},
-                    {value: 'From', label: 'From'},
-                    {value: 'Host', label: 'Host'},
-                    {value: 'If-Match', label: 'If-Match'},
-                    {value: 'If-Modified-Since', label: 'If-Modified-Since'},
-                    {value: 'If-None-Match', label: 'If-None-Match'},
-                    {value: 'If-Range', label: 'If-Range'},
-                    {value: 'If-Unmodified-Since', label: 'If-Unmodified-Since'},
-                    {value: 'Max-Forwards', label: 'Max-Forwards'},
-                    {value: 'Origin', label: 'Origin'},
-                    {value: 'Pragma', label: 'Pragma'},
-                    {value: 'Proxy-Authorization', label: 'Proxy-Authorization'},
-                    {value: 'Range', label: 'Range'},
-                    {value: 'Referer', label: 'Referer'},
-                    {value: 'TE', label: 'TE'},
-                    {value: 'Upgrade', label: 'Upgrade'},
-                    {value: 'User-Agent', label: 'User-Agent'},
-                    {value: 'Via', label: 'Via'},
+
                     {value: 'Warning', label: 'Warning'}],
                 header4: "",
                 addParameterFormVisible: false,
                 addResponseFormVisible: false,
-                required4:[{value: true, label: '是'},
-                    {value: false, label: '否'}],
-                httpCode:[{value: '', label: ''},
-                    {value: '200', label: '200'},
-                    {value: '404', label: '404'},
-                    {value: '400', label: '400'},
-                    {value: '500', label: '500'},
-                    {value: '502', label: '502'},
-                    {value: '302', label: '302'}],
+
+
                 radioType: "",
                 result: true,
-                activeNames: ['1', '2', '3', '4'],
+                activeNames: ['1', '2', '3', '4','5'],
                 id: "",
                 parameterRaw: "",
                 request3: true,
@@ -309,9 +282,12 @@
                         {name: "", value: ""}],
                     requestList: [{name: "", value: "", _type:"String", required: true, restrict: "", description: ""},
                         {name: "", value: "", _type:"String", required: true, restrict: "", description: ""}],
+                    MiList: [{MiURL: "", JMiURL: ""}],
+
+
                     requestParameterType: "",
                     responseList: [{name: "", value: "", _type:"String", required:true, description: ""},
-                        {name: "", value: "", _type:"String", required:true, description: ""}],
+                                   {name: "", value: "", _type:"String", required:true, description: ""}],
                     mockCode: '',
                     data: '',
                 },
@@ -350,6 +326,10 @@
                 }
                 return false;
             },
+
+
+
+
             addApiInfo:function(){
                 if (this.form.data&&this.form.mockCode) {
                     if (!this.isJsonString(this.form.data)) {
@@ -556,11 +536,11 @@
                     this.form.responseList.push({name: "", value: "", _type:"String", required:true, description: ""})
                 }
             },
-            changeParameterType() {
+            changeParameterType() {//不要删除这个加密URL用的到
                 if (this.radio === 'form-data') {
-                    this.ParameterTyep = true
+                    this.ParameterType = true
                 } else {
-                    this.ParameterTyep = false
+                    this.ParameterType = false
                 }
             },
             showData() {

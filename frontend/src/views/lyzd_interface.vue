@@ -14,6 +14,27 @@
                 <el-form-item>
                     <el-button type="primary" @click="handleAdd">新增1</el-button>
                 </el-form-item>
+                <el-form-item>
+
+					<router-link :to="{ path: 'addInterface'}" style='text-decoration: none;color: aliceblue;'>
+						<el-button type="primary">新增</el-button>
+					</router-link>
+				</el-form-item>
+				<el-form-item>
+					<el-button type="primary" :disabled="update" @click="changeGroup">修改模块</el-button>
+				</el-form-item>
+				<el-form-item>
+					<el-button type="primary" @click.native="DownloadApi">下载接口文档</el-button>
+				</el-form-item>
+				<el-form-item>
+					<el-button type="primary" @click.native="loadSwaggerApi = true">导入接口</el-button>
+					<el-dialog title="导入swagger接口" :visible.sync="loadSwaggerApi" :close-on-click-modal="false">
+						<el-input v-model.trim="swaggerUrl" placeholder="请输入swagger接口地址" style="width:90%"></el-input>
+						<el-button type="primary" @click="addSubmit" :loading="addLoading">导入</el-button>
+						<P v-if="!swaggerUrl" style="color: red; margin: 0px">不能为空</P>
+					</el-dialog>
+				</el-form-item>
+
             </el-form>
         </el-col>
 

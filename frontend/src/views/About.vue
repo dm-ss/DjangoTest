@@ -1,1 +1,1 @@
-<template></template>
+<template>我是一个很有个性的about</template>
