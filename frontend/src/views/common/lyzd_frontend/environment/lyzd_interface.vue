@@ -1,41 +1,68 @@
+<!--接口维护 add by gaojingyu-->
 <template>
     <section>
         <!--工具条-->
         <el-col :span="24" class="toolbar" style="padding-bottom: 0px;">
             <el-form :inline="true" :model="filters" @submit.native.prevent>
                 <el-form-item>
-                    <el-input v-model="filters.env_desc" placeholder="环境名称" @keyup.enter.native="getLyzdEnvironmentsList"></el-input>
+                    <el-input v-model="filters.interface_name_en" placeholder="接口名称" @keyup.enter.native="getLyzdInterfaceList"></el-input>
                 </el-form-item>
                 <el-form-item>
-                <!--getLyzdEnvironmentList -->
-                    <el-button type="primary" @click="getLyzdEnvironmentsList">查询</el-button>
+
+                    <el-button type="primary" @click="getLyzdInterfaceList">查询</el-button>
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="primary" @click="handleAdd">新增</el-button>
+                    <el-button type="primary" @click="handleAdd">新增1</el-button>
                 </el-form-item>
+                <el-form-item>
+
+					<router-link :to="{ path: 'addInterface'}" style='text-decoration: none;color: aliceblue;'>
+						<el-button type="primary">新增</el-button>
+					</router-link>
+				</el-form-item>
+				<el-form-item>
+					<el-button type="primary" :disabled="update" @click="changeGroup">修改模块</el-button>
+				</el-form-item>
+				<el-form-item>
+					<el-button type="primary" @click.native="DownloadApi">下载接口文档</el-button>
+				</el-form-item>
+				<el-form-item>
+					<el-button type="primary" @click.native="loadSwaggerApi = true">导入接口</el-button>
+					<el-dialog title="导入swagger接口" :visible.sync="loadSwaggerApi" :close-on-click-modal="false">
+						<el-input v-model.trim="swaggerUrl" placeholder="请输入swagger接口地址" style="width:90%"></el-input>
+						<el-button type="primary" @click="addSubmit" :loading="addLoading">导入</el-button>
+						<P v-if="!swaggerUrl" style="color: red; margin: 0px">不能为空</P>
+					</el-dialog>
+				</el-form-item>
+
             </el-form>
         </el-col>
 
         <!--列表-->
         <el-table :data="project" highlight-current-row v-loading="listLoading" @selection-change="selsChange" style="width: 100%;">
             <el-table-column type="selection" min-width="5%">
+           <!-- </el-table-column>
+            <el-table-column prop="Project_id" label="所属项目" min-width="16%" sortable>
+            </el-table-column>-->
+            <el-table-column prop="interface_name_zh" label="接口中文名称" min-width="12%" sortable>
             </el-table-column>
-            <el-table-column prop="env_desc" label="环境名称" min-width="12%" sortable>
+            <el-table-column prop="interface_name_en" label="方法名称" min-width="12%" sortable>
             </el-table-column>
-            <el-table-column prop="address" label="地址" min-width="12%" sortable>
+
+
+            <el-table-column prop="delete_flag" label="状态" min-width="5%" sortable>
+                <template slot-scope="scope">
+                    <img v-show="!scope.row.delete_flag" src="../../../../assets/icon-yes.svg"/>
+                    <img v-show="scope.row.delete_flag" src="../../../../assets/icon-no.svg"/>
+                </template>
             </el-table-column>
-             <el-table-column prop="content" label="描述" min-width="22%" sortable>
-            </el-table-column>
-            <el-table-column prop="createTime" label="创建时间" min-width="16%" sortable>
-            </el-table-column>
-            <el-table-column prop="LastUpdateTime" label="修改时间" min-width="16%" sortable>
-            </el-table-column>
-            <el-table-column label="操作" min-width="19%">
+            <el-table-column label="操作" min-width="25%">
                 <template slot-scope="scope">
                     <el-button size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+                     <el-button size="small" @click="handleEdit(scope.$index, scope.row)">详情</el-button>
                     <el-button type="danger" size="small" @click="handleDel(scope.$index, scope.row)">删除</el-button>
-                   <!-- <el-button type="info" size="small" @click="handleChangeStatus(scope.$index, scope.row)">{{scope.row.status===false?'启用':'禁用'}}</el-button>
-               -->
+                   <el-button type="info" size="small" @click="handleChangeStatus(scope.$index, scope.row)">{{scope.row.status===false?'启用':'禁用'}}</el-button>
+
                 </template>
             </el-table-column>
 
@@ -68,17 +95,25 @@
         </el-dialog>
 
         <!--新增界面-->
-        <el-dialog title="新增" :visible.sync="addFormVisible" :close-on-click-modal="false" style="width: 75%; left: 12.5%">
+        <el-dialog title="新增" :visible.sync="addFormVisible" :close-on-click-modal="false" style="width: 90%; left: 2%">
             <el-form :model="addForm" label-width="80px" :rules="addFormRules" ref="addForm">
-                <el-form-item label="环境名称" prop="env_desc">
+                <el-form-item label="模块" prop="env_desc">
                     <el-input v-model.trim="addForm.env_desc" auto-complete="off"></el-input>
                 </el-form-item>
-                <el-form-item label="地址" prop="address">
+                <el-form-item label="接口名称" prop="address">
                     <el-input v-model.trim="addForm.address" auto-complete="off"></el-input>
+
+                </el-form-item>
+                  <el-form-item label="启用状态" prop="address">
+                    <el-input v-model.trim="addForm.address" auto-complete="off"></el-input>
+
                 </el-form-item>
                 <el-form-item label="描述" prop='content'>
                     <el-input type="textarea" :rows="6" v-model="addForm.content"></el-input>
                 </el-form-item>
+
+
+
             </el-form>
             <div slot="footer" class="dialog-footer">
                 <el-button @click.native="addFormVisible = false">取消</el-button>
@@ -89,13 +124,14 @@
 
     </section>
 </template>
-//getLyzdEnvironmentList
+
 <script>
     //import NProgress from 'nprogress'
-   import { getLyzdEnvironments, addEnvironment,delEnvironment,updateEnvironment
+   import { getLyzdInterface,
+    //addEnvironment,delEnvironment,updateEnvironment
    //, delProject, disableProject, enableProject,
        // updateProject, addProject
-       } from '../api/api';
+       } from '../../../../api/api';
      // import { getProject, delProject, disableProject, enableProject,
       //  updateProject, addProject} from '../api/api';
     // import ElRow from "element-ui/packages/row/src/row";
@@ -167,15 +203,17 @@
             }
         },
         methods: {
-            // 获取项目列表 getLyzdEnvironments getLyzdEnvironments
-            getLyzdEnvironmentsList() {
+            // 获取项目列表 getLyzdEnvironments getLyzdEnvironments getLyzdInterfaceList
+            getLyzdInterfaceList() {
                 this.listLoading = true;
                 let self = this;
-                let params = { page: self.page, env_desc: self.filters.env_desc};
+                let params = { page: self.page, interface_name_zh: self.filters.interface_name_zh};
+                //alert(params)
+
 
 
                 let headers = {Authorization: 'Token '+JSON.parse(sessionStorage.getItem('token'))};
-                getLyzdEnvironments(headers, params).then((res) => {
+                getLyzdInterface(headers, params).then((res) => {
                     self.listLoading = false;
                     let { msg, code, data } = res;
                     if (code === '999999') {
@@ -217,7 +255,7 @@
                                 center: true,
                             })
                         }
-                        self.getLyzdEnvironmentsList()
+                        self.getLyzdInterfaceList()
                     });
                 })
             },
@@ -272,7 +310,7 @@
             },
             handleCurrentChange(val) {
                 this.page = val;
-                this.getLyzdEnvironmentsList()
+                this.getLyzdInterfaceList()
             },
             //显示编辑界面
             handleEdit: function (index, row) {
@@ -313,7 +351,7 @@
                                     });
                                     self.$refs['editForm'].resetFields();
                                     self.editFormVisible = false;
-                                    self.getLyzdEnvironmentsList()
+                                    self.getLyzdEnterfaceList()
                                 } else if (code === '999997'){
                                     self.$message.error({
                                         message: msg,
@@ -361,7 +399,7 @@
                                     });
                                     self.$refs['addForm'].resetFields();
                                     self.addFormVisible = false;
-                                    self.getLyzdEnvironmentsList()
+                                    self.getLyzdEnterfaceList()
                                 } else if (code === '999997') {
                                     self.$message.error({
                                         message: msg,
@@ -374,7 +412,7 @@
                                     });
                                     self.$refs['addForm'].resetFields();
                                     self.addFormVisible = false;
-                                    self.getLyzdEnvironmentsList()
+                                    self.getLyzdInterfaceList()
                                 }
                             })
                         });
@@ -413,13 +451,13 @@
                                 center: true,
                             })
                         }
-                        self.getLyzdEnvironmentsList()
+                        self.getLyzdInterfaceList()
                     });
                 })
             }
         },
         mounted() {
-            this.getLyzdEnvironmentsList();
+            this.getLyzdInterfaceList();
         }
     }
 

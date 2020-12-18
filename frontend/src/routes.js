@@ -7,11 +7,13 @@ const projectList = () => import('./views/Projectlist.vue');
 
 //高靖宇添加 龙盈智达list测试
 //const ProjectReport = () => import('./views/project/ProjectReport.vue');
-const lyzdEnvironmentList = () => import('./views/lyzd_environment.vue');
+const lyzdEnvironmentList = () => import('./views/common/lyzd_frontend/environment/lyzd_environment.vue');
 //lyzdInterfaceList
 
 //高靖宇添加 龙盈智达list测试
-const lyzdInterfaceList = () => import('./views/lyzd_interface.vue');
+const lyzdInterfaceList = () => import('./views/common/lyzd_frontend/environment/lyzd_interface.vue');
+// // const addInterface = () => import('./views/project/api/Addapi.vue');
+const addInterface = () => import('./views/common/lyzd_frontend/interface/AddInterface.vue');
 const ProjectInfo = () => import('./views/Project.vue');
 const globalHost = () => import('./views/project/global/Globalhost.vue');
 const API = () => import('./views/project/api/API.vue');
@@ -68,7 +70,7 @@ let routes = [
             {path: '/projectList', component: projectList, iconCls: 'el-icon-message', name: '项目列表'},
             {path: '/lyzdEnvironmentList', component: lyzdEnvironmentList, iconCls: 'el-icon-message', name: '环境列表'},
             {path: '/lyzdInterfaceList', component: lyzdInterfaceList, iconCls: 'el-icon-message', name: '接口维护'},
-            // {path: '/lyzdCaseList', component: lyzdCaseList, iconCls: 'el-icon-message', name: '用例维护'},
+            {path: '/addInterface', component: addInterface, iconCls: 'el-icon-message', name: '接口新增'},
             // {path: '/lyzdCaseList2', component: lyzdCaseList2, iconCls: 'el-icon-message', name: '接口测试执行'},
             // {path: '/lyzdCaseList3', component: lyzdCaseList3, iconCls: 'el-icon-message', name: '批量接口执行'},
             // {path: '/lyzdCaseList4', component: lyzdCaseList4, iconCls: 'el-icon-message', name: '测试执行结果查询'},
@@ -76,6 +78,29 @@ let routes = [
             // {path: '/lyzdCaseList6', component: lyzdCaseList6, iconCls: 'el-icon-message', name: '系统管理'},
             //  { path: '/robot', component: robot, iconCls:'fa fa-id-card-o', name: '消息机器人', meta: { keepAlive: true }},
             {path: '/about', component: About, iconCls: 'fa fa-address-card', name: '关于我们'},
+            {
+            path: "/home",
+            name: "Home",
+            component: Home,
+            children: [
+                {
+                    path: '/index',
+                    component: () => import('./views/project/ProjectReport.vue')
+                },
+                {
+                    path: '/week',
+                    component: () => import('./views/project/ProjectReport.vue')
+                },
+                {
+                    path: '/quick',
+                    component: () => import('./views/project/ProjectReport.vue')
+                },
+                {
+                    path: '/day',
+                    component: () => import('./views/project/ProjectReport.vue')
+                }
+            ]
+        },
         ]
     },
     {
@@ -188,6 +213,8 @@ let routes = [
         //     {   path: '/projectReport/project=:project_id', component: ProjectReport, name: '自动化测试报告', leaf: true},
         //     ]
     },
+
+
 ];
 
 export default routes;
