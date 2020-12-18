@@ -12,6 +12,10 @@ const lyzdEnvironmentList = () => import('./views/common/lyzd_frontend/environme
 
 //高靖宇添加 龙盈智达list测试
 const lyzdInterfaceList = () => import('./views/common/lyzd_frontend/interface/lyzd_interface.vue');
+//迁移代码
+
+const getResult = () => import('./views/common/lyzd_frontend/interface/getResult.vue');
+
 // // const addInterface = () => import('./views/project/api/Addapi.vue');
 const addInterface = () => import('./views/common/lyzd_frontend/interface/AddInterface.vue');
 const ProjectInfo = () => import('./views/Project.vue');
@@ -71,7 +75,7 @@ let routes = [
             {path: '/lyzdEnvironmentList', component: lyzdEnvironmentList, iconCls: 'el-icon-message', name: '环境列表'},
             {path: '/lyzdInterfaceList', component: lyzdInterfaceList, iconCls: 'el-icon-message', name: '接口维护'},
             {path: '/addInterface', component: addInterface, iconCls: 'el-icon-message', name: '接口新增'},
-            // {path: '/lyzdCaseList2', component: lyzdCaseList2, iconCls: 'el-icon-message', name: '接口测试执行'},
+            {path: '/getResult', component: getResult, iconCls: 'el-icon-message', name: '迁移代码测试'},
             // {path: '/lyzdCaseList3', component: lyzdCaseList3, iconCls: 'el-icon-message', name: '批量接口执行'},
             // {path: '/lyzdCaseList4', component: lyzdCaseList4, iconCls: 'el-icon-message', name: '测试执行结果查询'},
             // {path: '/lyzdCaseList5', component: lyzdCaseList5, iconCls: 'el-icon-message', name: '测试执行详情查询'},

@@ -60,12 +60,7 @@
                 </el-row>
 
                 <el-row :gutter="15">
-                    <el-col :span='8'>
-                        <el-form-item prop="apiAddress"  label="请求地址:" label-width="83px">
-                            <el-input v-model.trim="form.apiAddress" placeholder="请输入请求地址" auto-complete></el-input>
-                        </el-form-item>
-                    </el-col>
-                    <el-col :span='8'>
+                 <el-col :span='8'>
                            <el-form-item label="Content-Tpye:" label-width="120px" prop="apiGroupLevelFirst_id">
                                 <el-select v-model="form.apiGroupLevelFirst_id" placeholder="请选择">
                                     <el-option v-for="(item,index) in group" :key="index+''" :label="item.name" :value="item.id"></el-option>
@@ -73,6 +68,12 @@
 
                          </el-form-item>
                     </el-col>
+                    <el-col :span='12'>
+                        <el-form-item prop="apiAddress"  label="请求地址:" label-width="83px">
+                            <el-input v-model.trim="form.apiAddress" placeholder="请输入请求地址" auto-complete></el-input>
+                        </el-form-item>
+                    </el-col>
+
                 </el-row>
 
 
@@ -159,7 +160,7 @@
 
                             </el-row>
                         </div>
-                        <el-table :data="form.requestList" highlight-current-row :class="">
+                        <el-table :data="form.requestList" :cell-class-name="cellcb" highlight-current-row :class="">
                             <el-table-column prop="name" label="KEY" min-width="14%" sortable>
                                 <template slot-scope="scope">
                                     <el-input v-model.trim="scope.row.name" :value="scope.row.name" placeholder="请输入KEY"></el-input>
@@ -182,7 +183,7 @@
                             <el-table-column prop="description" label="依赖接口" min-width="14%" sortable>
                                 <template slot-scope="scope">
 
-                                    <el-select v-model="scope.row._type" placeholder="依赖接口名称" >
+                                    <el-select v-model="scope.row._type" placeholder="依赖接口名称" display="none" >
                                         <el-option v-for="(item,index) in paramTyep" :key="index+''" :label="item.label" :value="item.value"></el-option>
                                     </el-select></template>
                             </el-table-column>
@@ -282,7 +283,7 @@
                         {name: "", value: ""}],
                     requestList: [{name: "", value: "", _type:"String", required: true, restrict: "", description: ""},
                         {name: "", value: "", _type:"String", required: true, restrict: "", description: ""}],
-                    MiList: [{MiURL: "", JMiURL: ""}],
+                    MiList: [{MiURL: "", JMiURL: ""}], //加密解密专用
 
 
                     requestParameterType: "",
@@ -309,6 +310,14 @@
             }
         },
         methods: {
+
+             cellcb(row){
+              if(row.row.checkStatus === 1&&row.columnIndex === 0){
+                return "myCell"
+              }
+            },
+
+
             checkRequest(){
                 let request = this.form.requestType;
                 if (request==="GET" || request==="DELETE"){
@@ -530,12 +539,17 @@
                 let headers = {name: "", value: "", _type:"String", required:true, description: ""};
                 this.form.responseList.push(headers)
             },
-            delResponse(index) {
-                this.form.responseList.splice(index, 1);
-                if (this.form.responseList.length === 0) {
-                    this.form.responseList.push({name: "", value: "", _type:"String", required:true, description: ""})
-                }
+            cellcb(index) {   // txt.style.display = "none";
+                //this.form.responseList.splice(index, 1);
+
+                if(index.row.checkStatus === 1&&index.row.columnIndex === 0){
+                alert(index.row.columnIndex)
+                    return "myCell"}
+
+
             },
+
+
             changeParameterType() {//不要删除这个加密URL用的到
                 if (this.radio === 'form-data') {
                     this.ParameterType = true
@@ -629,4 +643,11 @@
             border-radius: 4px 0px 0px 4px;
         }
     }
+</style>
+
+<style>
+ .myCell .el-checkbox__input {
+  display: none
+}
+
 </style>

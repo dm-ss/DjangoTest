@@ -38,14 +38,101 @@ HTTP_CODE_CHOICE = (
     ('500', '500'),
     ('302', '302'),
 )
+#down下的代码
+# EXAMINE_TYPE_CHOICE = (
+#     ('no_check', '不校验'),
+#     ('only_check_status', '校验http状态'),
+#     ('json', 'JSON校验'),
+#     ('entirely_check', '完全校验'),
+#     ('Regular_check', '正则校验'),
+# )
 
+"""
+项目转换 modify by gaojingyu  20201218
+"""
+# 断言类型
 EXAMINE_TYPE_CHOICE = (
-    ('no_check', '不校验'),
-    ('only_check_status', '校验http状态'),
-    ('json', 'JSON校验'),
-    ('entirely_check', '完全校验'),
-    ('Regular_check', '正则校验'),
+    ('assertEqual', '等于'),
+    ('assertNotEqual', '不等于'),
+    ('assertRegexpMatches', '包含'),
+    ('assertNotRegexpMatches', '不包含'),
+    ('assertGreater', '大于'),
+    ('assertGreaterEqual', '大于等于'),
+    ('assertLess', '小于'),
+    ('assertLessEqual', '小于等于'),
+    ('assertIn', '在列表中'),
+    ('assertNotIn', '不在列表中'),
 )
+
+# 删除标志
+Delete_Flag = (
+    ('0', '不删除'),
+    ('1', '删除')
+)
+
+#用例分类
+Case_Type_CHOICE = (
+    ('0', '数据校验'),
+    ('1', '业务逻辑'),
+    ('2', '疏通测试')
+)
+
+#校验分类
+Check_Type_CHOICE = (
+    ('0', 'Response校验'),
+    ('1', '数据库校验'),
+
+)
+
+PARAM_TYPE = (
+    ('0', 'string'),
+    ('1', 'datatime'),
+    ('2', 'int'),
+    ('3', 'list'),
+
+)
+
+
+# 执行条件
+Action_Condition_CHOICE = (
+    ('0', 'or'),
+    ('1', 'and'),
+
+)
+
+
+# 认证
+authentication = (
+    ('0', '无认证'),
+    ('1', '加密解密'),
+)
+
+# 依赖
+relation = (
+    ('0', '无依赖'),
+    ('1', '有依赖关系'),
+)
+
+
+#随机数
+Random_Number = (
+    ('0', '无随机数'),
+    ('1', '自动生成随机数'),
+)
+
+# 随机数类型
+Random_Number_Type = (
+    ('0', '自动生成10位随机数'),
+    ('1', '自动生成姓名'),
+    ('2', 'idcard'),
+)
+
+
+
+
+
+
+
 
 UNIT_CHOICE = (
     ('m', '分'),
@@ -196,17 +283,6 @@ class Sys_Project(models.Model):
     content = models.CharField(max_length=255, blank=True, null=True, verbose_name='描述')
     status = models.CharField(max_length=5, verbose_name='状态')
 
-    # requestType = models.CharField(max_length=50, verbose_name='请求方式', choices=REQUEST_TYPE_CHOICE)
-    # authentication = models.CharField(max_length=100, verbose_name='认证')
-    # encryption = models.CharField(max_length=100, verbose_name='加密的接口url')
-    # decrypt = models.CharField(max_length=100, verbose_name='解密的接口url')
-    # delete_flag = models.CharField(max_length=5, verbose_name='删除标志')
-    # # requestParameterType
-    # create_user = models.CharField(max_length=100, verbose_name='创建用户')
-    # modify_user = models.CharField(max_length=100, verbose_name='修改用户')
-    # requestParameterType = models.CharField(max_length=50, verbose_name='修改用户')
-    #
-    # content = models.CharField(max_length=1024, blank=True, null=True, verbose_name='描述')
     LastUpdateTime = models.DateTimeField(auto_now=True, verbose_name='最近修改时间')
     createTime = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
 
@@ -220,6 +296,7 @@ class Sys_Project(models.Model):
         return self.project_name
 
     class Meta:
+        db_table = 'sys_project'
         verbose_name = '项目名称'
         verbose_name_plural = '项目名称'
 
@@ -234,7 +311,6 @@ class Lyzd_Interface(models.Model):
     interface_name_en = models.CharField(max_length=100, verbose_name='接口英文名称')
 
     interface_name_zh = models.CharField(max_length=100, verbose_name='接口中文名称')
-
     requestType = models.CharField(max_length=50, verbose_name='请求方式', choices=REQUEST_TYPE_CHOICE)
     authentication = models.CharField(max_length=100, verbose_name='认证')
     encryption = models.CharField(max_length=100, verbose_name='加密的接口url')
@@ -249,7 +325,7 @@ class Lyzd_Interface(models.Model):
     LastUpdateTime = models.DateTimeField(auto_now=True, verbose_name='最近修改时间')
     createTime = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
     # 需要新建外键关联的主表才能设置外键
-    Project = models.ForeignKey(Project, on_delete=models.SET_NULL, null=True, max_length=1024, verbose_name='项目id')
+    Project_id = models.ForeignKey(Project, on_delete=models.SET_NULL, null=True, max_length=1024, verbose_name='项目id')
 
     def __unicode__(self):
         return self.interface_name_zh
@@ -258,6 +334,7 @@ class Lyzd_Interface(models.Model):
         return self.interface_name_zh
 
     class Meta:
+        db_table = 'lyzd_interface'
         verbose_name = '接口信息'
         verbose_name_plural = '接口信息'
 
@@ -293,6 +370,7 @@ class Sys_Model(models.Model):
         return self.model_name
 
     class Meta:
+        db_table = 'sys_model'
         verbose_name = '模块表'
         verbose_name_plural = '模块信息'
 
@@ -318,8 +396,241 @@ class Sys_Environment(models.Model):
         return self.address
 
     class Meta:
+        db_table = 'sys_environment'
         verbose_name = '环境'
         verbose_name_plural = '环境管理'
+
+# 接口入参表（interface_param）
+class Lyzd_Interface_Param(models.Model):
+    id = models.AutoField(primary_key=True)
+    Interface_id = models.ForeignKey(Lyzd_Interface, on_delete=models.CASCADE, verbose_name="接口外键")
+    param_key = models.CharField(max_length=50, verbose_name="入参key")
+    param_type = models.CharField(max_length=50, verbose_name="入参类型",choices=PARAM_TYPE)
+    random_number = models.CharField(max_length=50, verbose_name="随机数",choices=Random_Number)
+    random_number_type = models.CharField(max_length=50, verbose_name="随机数_类型",choices=Random_Number_Type)
+    createTime = models.DateTimeField(auto_now=True, verbose_name='创建时间')
+    LastUpdateTime = models.DateTimeField(auto_now=True, verbose_name='最近修改时间')
+
+    #     定义表名
+    class Meta:
+        db_table = 'lyzd_interface_param'
+        verbose_name = '接口入参数表'
+        verbose_name_plural = '接口入参数表'
+
+
+# 接口header表（interface_header）：header是固定值
+class Lyzd_Interface_Header(models.Model):
+    id = models.AutoField(primary_key=True)
+    interface_id = models.ForeignKey(Lyzd_Interface, on_delete=models.CASCADE, verbose_name="接口外键")
+    header_key = models.CharField(max_length=50, verbose_name="headerKey")
+    relation = models.CharField(max_length=5,  default= "0",verbose_name="依赖接口",choices=relation)
+    relation_interface_id = models.CharField(max_length=50, verbose_name="依赖关系接口id")
+    relation_interface_key = models.CharField(max_length=50, verbose_name="依赖关系headerKey")
+    createTime = models.DateTimeField(auto_now=True, verbose_name='创建时间')
+    LastUpdateTime = models.DateTimeField(auto_now=True, verbose_name='最近修改时间')
+
+    #     定义表名
+    class Meta:
+        db_table = 'lyzd_interface_header'
+        verbose_name = '接口header表'
+        verbose_name_plural = '接口header表'
+
+# 用例信息表（interface_case）
+class Lyzd_Interface_Cases(models.Model):
+    id = models.AutoField(primary_key=True)
+    Interface_id = models.ForeignKey(Lyzd_Interface, on_delete=models.CASCADE,verbose_name="接口外键")
+    case_name = models.CharField(max_length=50, verbose_name="用例名称")
+    case_type = models.CharField(max_length=100, default= "2",verbose_name="用例分类",choices=Case_Type_CHOICE)
+    check_type = models.CharField(max_length=100, default= "0",verbose_name="校验分类",choices=Check_Type_CHOICE)
+    check_key = models.CharField(max_length=225, verbose_name="校验关键字") #去key值，如code,message
+    check_condition = models.CharField(max_length=100, default='assertEqual',verbose_name="断言分类", choices=EXAMINE_TYPE_CHOICE) #属于断言分类
+    check_value = models.CharField(max_length=225, verbose_name="预期值value")
+    action_condition = models.CharField(max_length=225, default=0,verbose_name="执行条件",choices=Action_Condition_CHOICE)
+    check_sql = models.CharField(max_length=225, verbose_name="执行sql")
+    create_user = models.CharField(max_length=225, verbose_name="创建用户")
+    modify_user = models.CharField(max_length=225, verbose_name="修改用户")
+    status = models.BooleanField()
+    def __str__(self):
+        return str(self.id)
+    #     定义表名
+    class Meta:
+        db_table = 'lyzd_interface_case'
+        verbose_name = '用例信息表'
+        verbose_name_plural = '用例信息表'
+
+
+
+# 用例入参表（interface_case_param）：1个key存储1条记录
+class Lyzd_Interface_Case_Param(models.Model):
+    id = models.AutoField(primary_key=True)
+    Interface_id = models.ForeignKey(Lyzd_Interface, on_delete=models.CASCADE, verbose_name="接口外键")
+    Interface_Cases_id = models.ForeignKey(Lyzd_Interface_Cases, on_delete=models.CASCADE, verbose_name="测试用例外键")
+    param_key = models.CharField(max_length=1024, verbose_name="入参key")
+    param_value = models.CharField(max_length=1024, verbose_name="入参值value")
+    create_user = models.CharField(max_length=225, verbose_name="创建用户")
+    modify_user = models.CharField(max_length=225, verbose_name="修改用户")
+    LastUpdateTime = models.DateTimeField(auto_now=True, verbose_name='最近修改时间')
+    createTime = models.DateTimeField(auto_now=True, verbose_name='创建时间')
+
+
+
+    #     定义表名  用例入参表
+    class Meta:
+        db_table = 'lyzd_interface_case_param'
+        verbose_name = '用例入参表'
+        verbose_name_plural = '用例入参表'
+
+
+
+# 请求头入参表（interface_header_param）：
+class Lyzd_Interface_Header_Param(models.Model):
+    id = models.AutoField(primary_key=True)
+    Interface_id = models.ForeignKey(Lyzd_Interface, on_delete=models.CASCADE, verbose_name="接口外键")
+    Interface_Cases_id = models.ForeignKey(Lyzd_Interface_Cases, on_delete=models.CASCADE, verbose_name="测试用例外键")
+    header_key = models.CharField(max_length=1024, verbose_name="请求头key")
+    header_value = models.CharField(max_length=1024, verbose_name="请求头value")
+    create_user = models.CharField(max_length=225, verbose_name="创建用户")
+    modify_user = models.CharField(max_length=225, verbose_name="修改用户")
+    LastUpdateTime = models.DateTimeField(auto_now=True, verbose_name='最近修改时间')
+    createTime = models.DateTimeField(auto_now=True, verbose_name='创建时间')
+
+    #     定义表名
+    class Meta:
+        db_table = 'lyzd_interface_header_param'
+
+
+
+# 接口执行表（interface）:以接口得维度/类似于统计分析总表StatisticsData
+class Lyzd_Interface_Action(models.Model):
+    id = models.AutoField(primary_key=True)
+    Project = models.ForeignKey(Sys_Project, on_delete=models.CASCADE, verbose_name="项目外键")
+    environment_id = models.ForeignKey(Sys_Environment, on_delete=models.CASCADE, verbose_name="环境外键")
+    # environment_id =  models.CharField(max_length=225,verbose_name="环境外键")
+    interface_action = models.CharField(max_length=225, verbose_name="执行的接口")#总接口id
+    interface_aciton_succcess = models.CharField(max_length=225, verbose_name="成功的接口")
+    interface_aciton_fail = models.CharField(max_length=225, verbose_name="失败的接口")
+    create_user = models.CharField(max_length=100, verbose_name="创建用户")
+    LastUpdateTime = models.DateTimeField(auto_now=True, verbose_name='最近修改时间')
+    createTime = models.DateTimeField(auto_now=True, verbose_name='创建时间')
+
+
+    #     定义表名
+    class Meta:
+        db_table = 'lyzd_interface_action'
+
+
+# 接口执行详情表（interface_action_detail） ：以用例得维度
+class Lyzd_Interface_Action_Detail(models.Model):
+    id = models.AutoField(primary_key=True)
+    Interface_id = models.ForeignKey(Lyzd_Interface, on_delete=models.CASCADE, verbose_name="接口外键")
+    Interface_Case_id = models.ForeignKey(Lyzd_Interface_Cases, on_delete=models.CASCADE, verbose_name="测试案例外键")
+    param_in = models.CharField(max_length=1500, verbose_name="入参")  #总入参
+    param_out = models.CharField(max_length=1500, verbose_name="出参")  #总出参
+    check_key = models.CharField(max_length=225, verbose_name="校验关键字")  # 去key值，如code,message
+    check_condition = models.CharField(max_length=100, verbose_name="断言分类")  # 属于断言分类
+    check_value = models.CharField(max_length=225, verbose_name="预期值value")
+    out_value = models.CharField(max_length=1225, verbose_name="实际返回值")
+    action_condition = models.CharField(max_length=225, verbose_name="执行条件", default=0)  # 同时1条数据多个值校验得时候，多个结果是且/或得关系
+    LastUpdateTime = models.DateTimeField(auto_now=True, verbose_name='最近修改时间')
+    createTime = models.DateTimeField(auto_now=True, verbose_name='创建时间')
+
+
+    #     定义表名
+    class Meta:
+        db_table = 'lyzd_interface_action_detail'
+
+
+
+#任务表
+class Lyzd_Task(models.Model):
+    # Interfaces接口外键
+    interface_name=models.ForeignKey(Lyzd_Interface,on_delete=models.CASCADE, verbose_name="接口名")
+    task_name = models.CharField(max_length=200,verbose_name="任务名") #唯一
+    uuid = models.CharField(max_length=200, default="")
+    out_id = models.CharField(max_length=200, default="")
+    carryId = models.IntegerField(default=0)
+    task_run_time_regular = models.CharField(max_length=100,verbose_name="定时")
+    ip=models.CharField(max_length=40,default="",verbose_name="Environments的ip")
+    Nosqldb = models.CharField(max_length=40,default="")
+    db = models.CharField(max_length=40,default="")
+    email = models.CharField(max_length=40,default="",verbose_name="eaail的id")
+    failcount = models.CharField(max_length=40,default="",verbose_name="执行失败次数")
+    remark = models.CharField(max_length=200,verbose_name="任务备注")
+    Nosqldb_desc = models.CharField(max_length=400,default="")
+    db_remark = models.CharField(max_length=100, default="",verbose_name="db的备注")
+    env_desc = models.CharField(max_length=100, default="",verbose_name="Environments的备注")
+    subject = models.CharField(max_length=100, default="",verbose_name="email的标题名")
+    status = models.BooleanField()
+    carrystatus = models.IntegerField(default=2)
+    update_time = models.DateTimeField(auto_now=True)
+    create_time = models.DateTimeField(auto_now=True)
+
+    #     定义表名
+    class Meta:
+        db_table = 'lyzd_task'
+
+
+    def __str__(self):
+        return str(self.task_name)
+
+
+
+#第几次执行任务
+class Lyzd_CarryTask(models.Model):
+    task_name = models.CharField(max_length=200,verbose_name="任务名")
+    htmlreport = models.CharField(max_length=200, default="")
+    successlogname = models.CharField(max_length=200, default="")
+    errorlogname = models.CharField(max_length=200, default="")
+    stepcountall = models.IntegerField(default=0)
+    stepcountnow = models.IntegerField(default=0)
+    out_id = models.CharField(max_length=200, default="")
+    update_time = models.DateTimeField(auto_now=True)
+    create_time = models.DateTimeField(auto_now=True)
+
+
+    #     定义表名
+    class Meta:
+        db_table = 'lyzd_carrytask'
+
+    def __str__(self):
+        return str(self.task_name)
+
+#邮件配置表
+class Lyzd_Email(models.Model):
+    sender=models.CharField(max_length=100,verbose_name="发送人")
+    receivers = models.CharField(max_length=100,verbose_name="接收人列表")
+    host_dir = models.CharField(max_length=100,verbose_name="邮件主机")
+    email_port=models.CharField(max_length=20, default="",verbose_name="邮件发送端口")
+    username = models.CharField(max_length=100,verbose_name="用户名")
+    passwd = models.CharField(max_length=100,verbose_name="密码")
+    Headerfrom = models.CharField(max_length=100,verbose_name="发送人头部信息")
+    Headerto = models.CharField(max_length=100,verbose_name="接收人头部信息")
+    subject = models.CharField(max_length=100,default="",verbose_name="邮件标题",unique=True) #唯一
+
+    def __str__(self):
+        return str(self.username)
+
+    #     定义表名
+    class Meta:
+        db_table = 'lyzd_email'
+
+#邮件和日志的反馈
+class Lyzd_LogAndHtmlfeedback(models.Model):
+    test_step = models.CharField(max_length=100,verbose_name="步骤名")
+    test_status = models.IntegerField(verbose_name="测试结果") #1表示成功 0表示接口内部错误500 2 表示断言错误
+    test_response = models.CharField(max_length=225,verbose_name="测试返回值的message信息")
+    test_carryTaskid = models.CharField(max_length=40,default="",verbose_name="第几次执行") #CarryTask的id
+    update_time = models.DateTimeField(auto_now=True)
+    create_time = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return str(self.test_step)
+
+        #     定义表名
+
+    class Meta:
+        db_table = 'lyzd_LogAndHtmlfeedback'
+
 
 
 """高靖宇添加结束"""

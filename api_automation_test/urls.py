@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include,re_path
 from django.views.generic import TemplateView
 from rest_framework.schemas import get_schema_view
 from rest_framework_swagger.renderers import SwaggerUIRenderer, OpenAPIRenderer
@@ -32,4 +32,5 @@ urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name="index.html")),
     url(r'^api/', include(urls)),
     path('mock/<path:apiAdr>', MockRequest.as_view()),
+    re_path('api_test/',include('api_test.urls'))
 ]

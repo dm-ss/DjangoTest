@@ -30,6 +30,11 @@ export const getLyzdInterface = (headers, params) => {
     return axios.get(`${test}/api/project/interface_list`, {params: params, headers: headers}).then(res => res.data);
 };
 
+//测试代码迁移的页面展示
+export const getResult = (headers, params) => {
+    return axios.get(`${test}/api/project/getResult`, {params: params, headers: headers}).then(res => res.data);
+};
+
 
 //获取龙盈智达环境
 export const getLyzdEnvironments = (headers, params) => {
