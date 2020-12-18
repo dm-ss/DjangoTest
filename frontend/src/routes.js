@@ -11,7 +11,7 @@ const lyzdEnvironmentList = () => import('./views/common/lyzd_frontend/environme
 //lyzdInterfaceList
 
 //高靖宇添加 龙盈智达list测试
-const lyzdInterfaceList = () => import('./views/common/lyzd_frontend/environment/lyzd_interface.vue');
+const lyzdInterfaceList = () => import('./views/common/lyzd_frontend/interface/lyzd_interface.vue');
 // // const addInterface = () => import('./views/project/api/Addapi.vue');
 const addInterface = () => import('./views/common/lyzd_frontend/interface/AddInterface.vue');
 const ProjectInfo = () => import('./views/Project.vue');
