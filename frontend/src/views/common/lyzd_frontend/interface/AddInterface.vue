@@ -13,19 +13,20 @@
         <el-form :model="form" ref="form" :rules="FormRules">
             <div style="border: 1px solid #e6e6e6;margin-bottom: 10px;padding:15px">
                 <el-row :gutter="15">
-                    <el-col :span='8'>
-                        <el-form-item label="所属项目:" label-width="83px" prop="apiGroupLevelFirst_id">
-                                <el-select v-model="form.apiGroupLevelFirst_id" placeholder="请选择项目">
-                                    <el-option v-for="(item,index) in group" :key="index+''" :label="item.name" :value="item.id"></el-option>
-                                </el-select>
+                    <el-col :span='8'><!--apiGroupLevelFirst_id-->
+                        <el-form-item label="所属项目:" label-width="83px" prop="getProjectFirstID"><!--apiGroupLevelFirst_id-->
+                            <el-select v-model="form.getProjectFirstID" placeholder="请选择所属项目">
+                                <el-option v-for="(item,index) in project" :key="index+''" :label="item.project_name" :value="item.id"></el-option>
+                            </el-select>
+                        </el-form-item>
+                    </el-col>
 
-                            </el-form-item>
-                            </el-col>
-                            <el-col :span="8">
-                                <el-form-item label="类型分组:" label-width="83px" prop="apiGroupLevelFirst_id">
-                                        <el-select v-model="form.apiGroupLevelFirst_id" placeholder="请选择接口类型分组">
-                                            <el-option v-for="(item,index) in group" :key="index+''" :label="item.name" :value="item.id"></el-option>
-                                </el-select>
+
+                    <el-col :span="8">
+                        <el-form-item label="类型分组:" label-width="83px" prop="apiGroupLevelFirst_id">
+                            <el-select v-model="form.getProject" placeholder="请选择接口类型分组">
+                                <el-option v-for="(item,index) in group" :key="index+''" :label="item.name" :value="item.id"></el-option>
+                            </el-select>
                         </el-form-item>
                     </el-col>
                 </el-row>
@@ -48,26 +49,27 @@
                 </el-row>
                 <el-row :gutter="15">
                     <el-col :span='8'>
-                        <el-form-item label="接口名称:" label-width="83px" prop="name">
-                            <el-input v-model.trim="form.name" placeholder="请输入接口名称" auto-complete></el-input>
+                        <el-form-item label="接口名称:" label-width="83px" prop="interface_name_zh">
+                            <el-input v-model.trim="form.interface_name_zh" placeholder="请输入接口名称" auto-complete></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="8">
-                        <el-form-item label="方法名称:" label-width="83px" prop="name">
-                            <el-input v-model.trim="form.name" placeholder="请输入方法名称" auto-complete></el-input>
+                        <el-form-item label="方法名称:" label-width="83px" prop="interface_name_en">
+                            <el-input v-model.trim="form.interface_name_en" placeholder="请输入方法名称" auto-complete></el-input>
                         </el-form-item>
                     </el-col>
                 </el-row>
 
                 <el-row :gutter="15">
-                 <el-col :span='8'>
+                <!--
+                   <el-col :span='8'>
                            <el-form-item label="Content-Tpye:" label-width="120px" prop="apiGroupLevelFirst_id">
                                 <el-select v-model="form.apiGroupLevelFirst_id" placeholder="请选择">
                                     <el-option v-for="(item,index) in group" :key="index+''" :label="item.name" :value="item.id"></el-option>
                                 </el-select>
 
                          </el-form-item>
-                    </el-col>
+                    </el-col>-->
                     <el-col :span='12'>
                         <el-form-item prop="apiAddress"  label="请求地址:" label-width="83px">
                             <el-input v-model.trim="form.apiAddress" placeholder="请输入请求地址" auto-complete></el-input>
@@ -93,12 +95,12 @@
 
                            <!--form.requestList需重写词方法保证只有一个 -->
                         <el-table :data="form.MiList" highlight-current-row :class="ParameterType? 'parameter-a': 'parameter-b'">
-                            <el-table-column prop="name" label="加密URL" min-width="40%" sortable>
+                            <el-table-column prop="encryption" label="加密URL" min-width="40%" sortable>
                                 <template slot-scope="scope">
                                     <el-input v-model.trim="scope.row.name" :value="scope.row.name" placeholder="请输入加密URL"></el-input>
                                 </template>
                             </el-table-column>
-                            <el-table-column prop="value" label="解密URL" min-width="40%" sortable>
+                            <el-table-column prop="decrypt" label="解密URL" min-width="40%" sortable>
                                 <template slot-scope="scope">
                                     <el-input v-model.trim="scope.row.JMUrl" :value="scope.row.JMUrl" placeholder="请输入解密URL"></el-input>
                                 </template>
@@ -113,7 +115,7 @@
 
                             </el-row>
                         </div>
-                        <el-table :data="form.requestList" highlight-current-row :class="">
+                        <el-table :data="form.requestList" highlight-current-row :class="add">
                             <el-table-column prop="name" label="KEY" min-width="14%" sortable>
                                 <template slot-scope="scope">
                                     <el-input v-model.trim="scope.row.name" :value="scope.row.name" placeholder="请输入KEY"></el-input>
@@ -170,7 +172,7 @@
                             <el-table-column prop="_type" label="参数类型" min-width="14%" sortable>
                                 <template slot-scope="scope">
                                     <el-select v-model="scope.row._type"  placeholder="请求方式">
-                                        <el-option v-for="(item,index) in paramTyep" :key="index+''" :label="item.label" :value="item.value"></el-option>
+                                        <el-option v-for="(item,index) in paramType" :key="index+''" :label="item.label" :value="item.value"></el-option>
                                     </el-select>
                                 </template>
                             </el-table-column>
@@ -184,7 +186,7 @@
                                 <template slot-scope="scope">
 
                                     <el-select v-model="scope.row._type" placeholder="依赖接口名称" display="none" >
-                                        <el-option v-for="(item,index) in paramTyep" :key="index+''" :label="item.label" :value="item.value"></el-option>
+                                        <el-option v-for="(item,index) in paramType" :key="index+''" :label="item.label" :value="item.value"></el-option>
                                     </el-select></template>
                             </el-table-column>
                             <el-table-column label="操作" min-width="5%">
@@ -204,18 +206,27 @@
 
 
 
-                    <el-collapse-item title="入参示例4" name="4">
+                    <el-collapse-item title="入参示例4" name="inParamShow">
                         <el-card class="box-card">
 
-                            <el-input v-model.trim="form.data" type="textarea" :rows="5" placeholder="请输入入参示例"></el-input>
+                            <el-input v-model.trim="form.data.inParamShow" type="textarea" :rows="5" placeholder="请输入入参示例"></el-input>
                         </el-card>
                     </el-collapse-item>
-                     <el-collapse-item title="出参示例5" name="5">
+                     <el-collapse-item title="出参示例5" name="outParamShow">
                         <el-card class="box-card">
 
-                            <el-input v-model.trim="form.data" type="textarea" :rows="5" placeholder="请输入出参示例"></el-input>
+                            <el-input v-model.trim="form.data.outParamShow" type="textarea" :rows="5" placeholder="请输入出参示例"></el-input>
                         </el-card>
                     </el-collapse-item>
+                    <el-collapse-item title="备注" name="content">
+                        <el-card class="box-card">
+                            <el-input v-model.trim="form.data.content" type="textarea" :rows="5" placeholder="请输入备注"></el-input>
+                        </el-card>
+                    </el-collapse-item>
+
+                     <el-form-item label="描述" prop='content' label-width="83px">
+                                <el-input type="textarea" :rows="7" v-model.trim="editForm.content" placeholder="请输入描述"></el-input>
+                     </el-form-item>
                 </el-collapse>
             </el-row>
         </el-form>
@@ -227,15 +238,15 @@
         <router-link :to="{ name: '接口列表', params: {project_id: this.$route.params.project_id}}" style='text-decoration: none;color: aliceblue;'>
             <el-button class="return-list" style="float: right">取消</el-button>
         </router-link>
-        <el-button class="return-list" type="primary" style="float: right; margin-right: 15px" @click.native="addApiInfo">保存</el-button>
+        <el-button class="return-list" type="primary" style="float: right; margin-right: 15px" @click.native="addInterfaceInfo">保存</el-button>
 
     </section>
 </template>
 <!-----页面代码结束----->
 <!-----脚本代码开始----->
 <script>
-    import { addApiDetail, getApiGroupList } from "../../../../api/api";
-
+    //import { addApiDetail, getApiGroupList } from "../../../../api/api";
+import { getProjectList } from "../../../../api/api";
     export default {
         data() {
             return {
@@ -245,7 +256,7 @@
                     {value: 'DELETE', label: 'DELETE'}],
                 Http: [{value: 'HTTP', label: 'HTTP'},
                     {value: 'HTTPS', label: 'HTTPS'}],
-                paramTyep: [{value: 'Int', label: 'Int'},
+                paramType: [{value: 'Int', label: 'Int'},
                     {value: 'String', label: 'String'},
                     {value: 'Random', label: 'Random'},
                     {value: 'Date', label: 'Date'}],
@@ -273,31 +284,31 @@
                 parameterRaw: "",
                 request3: true,
                 form: {
-                    apiGroupLevelFirst_id: '',
-                    name: '',
+                    getProjectFirstID: '',//getProject ,apiGroupLevelFirst_id
+                    interface_name_zh: '',
                     status: true,
                     requestType: 'POST',
                     httpType: 'HTTP',
                     apiAddress: '',
                     headDict: [{name: "", value: ""},
                         {name: "", value: ""}],
-                    requestList: [{name: "", value: "", _type:"String", required: true, restrict: "", description: ""},
-                        {name: "", value: "", _type:"String", required: true, restrict: "", description: ""}],
+                    requestList: [{name: "", value: "", _type:"String", required: false, restrict: "", description: ""},
+                        {name: "", value: "", _type:"String", required: false, restrict: "", description: ""}],
                     MiList: [{MiURL: "", JMiURL: ""}], //加密解密专用
 
 
                     requestParameterType: "",
-                    responseList: [{name: "", value: "", _type:"String", required:true, description: ""},
-                                   {name: "", value: "", _type:"String", required:true, description: ""}],
+                    responseList: [{name: "", value: "", _type:"String", required:false, description: ""},
+                                   {name: "", value: "", _type:"String", required:false, description: ""}],
                     mockCode: '',
                     data: '',
                 },
                 FormRules: {
-                    name : [{ required: true, message: '请输入名称', trigger: 'blur' },
+                    name : [{ required: false, message: '请输入名称', trigger: 'blur' },
                         { max: 50, message: '不能超过50个字', trigger: 'blur' }],
-                    apiAddress : [{ required: true, message: '请输入地址', trigger: 'blur' }],
-                    required : [{ type: 'boolean', required: true, message: '请选择状态', trigger: 'blur' }],
-                    apiGroupLevelFirst_id : [{ type: 'number', required: true, message: '请选择分组', trigger: 'blur'}],
+                    apiAddress : [{ required: false, message: '请输入地址', trigger: 'blur' }],
+                    //required : [{ type: 'boolean', required: false, message: '请选择状态', trigger: 'blur' }],
+                    getProjectFirstID : [{ type: 'number', required: false, message: '请选择项目', trigger: 'blur'}],
                 },
                 editForm: {
                     name: "",
@@ -339,55 +350,50 @@
 
 
 
-            addApiInfo:function(){
-                if (this.form.data&&this.form.mockCode) {
+            addInterfaceInfo:function(){//保存按钮
+            alert('进入addInterfaceInfo方法，进行数据校验')
+                if (this.form.data) {
                     if (!this.isJsonString(this.form.data)) {
+
                         this.$message({
-                            message: 'mock格式错误',
+                            message: '数据错误错误',
                             center: true,
                             type: 'error'
                         })
                     } else {
                         this.addApi()
                     }
-                } else if(this.form.data||this.form.mockCode){
+                } else if(this.form.data){
                     this.$message({
-                        message: 'HTTP状态或mock为空',
+                        message: '数据不全',
                         center: true,
                         type: 'warning'
                     })
                 } else {
-                    this.addApi()
+                    this.addInterface()
                 }
             },
-            addApi: function () {
+            addInterface: function () {
+            alert('进入保存的正式方法')
+            console.log(this.form.data)//请求的header2 过来了读取到了值
                 this.$refs.form.validate((valid) => {
+                alert(1)
+
                     if (valid) {
+                    alert(2)
                         let self = this;
                         console.log(this.form.requestList);
                         this.$confirm('确认提交吗？', '提示', {}).then(() => {
                             self.form.parameterType = self.radio;
                             let _type = self.form.parameterType;
                             let _parameter = {};
-                            if ( _type === 'form-data') {
-                                if ( self.radioType === true) {
-                                    _type = 'raw';
-                                    self.form.requestList.forEach((item) => {
-                                        if (item.name) {
-                                            _parameter[item.name] = item.value
-                                        }
-                                    });
-                                    _parameter = JSON.stringify(_parameter)
-                                } else {
-                                    _parameter = self.form.requestList;
-                                }
-                            } else {
-                                _parameter = self.parameterRaw
-                            }
+                            _parameter = self.form.requestList;
+
                             console.log(_parameter)
-                            let params = {
+                            let params = {//构建参数
                                 project_id: Number(self.$route.params.project_id),
-                                apiGroupLevelFirst_id: Number(self.form.apiGroupLevelFirst_id),
+                                getProjectFirstId: Number(self.form.getProjectFirstId),
+                                //apiGroupLevelFirst_id: Number(self.form.apiGroupLevelFirst_id),
                                 name: self.form.name,
                                 httpType: self.form.httpType,
                                 requestType: self.form.requestType,
@@ -397,10 +403,12 @@
                                 requestParameterType: _type,
                                 requestList: _parameter,
                                 responseList: self.form.responseList,
-                                mockCode: self.form.mockCode,
+                                // mockCode: self.form.mockCode,
                                 data: self.form.data,
-                                description: "",
+                                content: "content",
                             };
+                            console.log(1234)
+                            console.log(params)
                             let headers = {
                                 "Content-Type": "application/json",
                                 Authorization: 'Token ' + JSON.parse(sessionStorage.getItem('token'))
@@ -419,8 +427,8 @@
                                         if (code === '999999') {
                                             self.$router.push({name: '分组接口列表',
                                                 params: {
-                                                    project_id: self.$route.params.project_id,
-                                                    firstGroup: self.form.apiGroupLevelFirst_id
+                                                    // project_id: self.$route.params.project_id,
+                                                    firstGroup: self.form.getProject
                                                 }
                                             });
                                             self.$message({
@@ -444,7 +452,7 @@
                                         self.$router.push({name: '分组接口列表',
                                             params: {
                                                 project_id: self.$route.params.project_id,
-                                                firstGroup: self.form.apiGroupLevelFirst_id
+                                                firstGroup: self.form.getProject
                                             }
                                         });
                                         self.$message({
@@ -491,21 +499,31 @@
                 this.id = index;
                 this.editForm = Object.assign({}, row);
             },
-            // 获取api分组
-            getApiGroup() {
+
+
+
+            /// demo  例子
+            getProjects() {
                 let self = this;
                 let params = {
-                    project_id: this.$route.params.project_id
+                     project_id: this.$route.params.project_id
                 };
                 let headers = {
                     "Content-Type": "application/json",
                     Authorization: 'Token '+JSON.parse(sessionStorage.getItem('token'))
                 };
-                getApiGroupList(headers, params).then(_data => {
+
+                getProjectList(headers, params).then(_data => {
                     let {msg, code, data} = _data;
+
                     if (code === '999999') {
-                        self.group = data;
-                        self.form.apiGroupLevelFirst_id = self.group[0].id
+                    self.group = data;
+
+                        //self.group = data;
+                        //self.form.apiGroupLevelFirst_id = self.group[0].id
+
+                        self.project = data;
+                        self.form.getProjectFirstID = self.get[0].id
                     }
                     else {
                         self.$message.error({
@@ -515,6 +533,9 @@
                     }
                 })
             },
+
+
+
             addHead() {
                 let headers = {name: "", value: ""};
                 this.form.headDict.push(headers)
@@ -604,7 +625,7 @@
             },
         },
         mounted() {
-            this.getApiGroup();
+            this.getProjects();
             this.fastAdd();
         }
     }

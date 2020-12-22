@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from rest_framework import serializers
 from rest_framework.authtoken.models import Token
 
-from api_test.models import Project,Sys_Environment,Lyzd_Interface, ProjectDynamic, ProjectMember, GlobalHost, ApiGroupLevelFirst, \
+from api_test.models import Project,Sys_Environment,Sys_Project,Lyzd_Interface, ProjectDynamic, ProjectMember, GlobalHost, ApiGroupLevelFirst, \
     ApiInfo, APIRequestHistory, ApiOperationHistory, AutomationGroupLevelFirst, \
     AutomationTestCase, AutomationCaseApi, AutomationHead, AutomationParameter, AutomationTestTask, \
     AutomationTestResult, ApiHead, ApiParameter, ApiResponse, ApiParameterRaw, AutomationParameterRaw, \
@@ -38,7 +38,16 @@ class SysEnvironmentSerializer(serializers.ModelSerializer):
         model = Sys_Environment
 
         fields = ('id','env_desc','address','content','LastUpdateTime', 'createTime')
+#高靖宇sysproject表序列化
 
+class Sys_ProjectSerializer(serializers.ModelSerializer):
+    LastUpdateTime = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", required=False, read_only=True)
+    createTime = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", required=False, read_only=True)
+
+    class Meta:
+        model = Sys_Project
+
+        fields = ('id','project_name','status','content','LastUpdateTime', 'createTime')
 
 
 class SysInterfaceSerializer(serializers.ModelSerializer):

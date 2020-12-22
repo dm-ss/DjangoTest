@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-from api_test.api import ApiDoc, automationCase as Case, member, dynamic, user, VisitorRecord, DingManage, getResult
+from api_test.api import ApiDoc,common, automationCase as Case, member, dynamic, user, VisitorRecord, DingManage, getResult
 from api_test.api import automationReport as Report
 from api_test.api.global_parameter import HostTotal, AddHost, UpdateHost, DelHost, DisableHost, EnableHost
 from api_test.api.projectList import ProjectList, AddProject, DelProject, \
@@ -14,10 +14,15 @@ from api_test.api.projectTitle import ProjectInfo
 
 from django.urls import re_path
 from api_test.api.getResult import getResult
+from api_test.api.common import project
 urlpatterns = [
     url(r'project/getResult', getResult.as_view()),#迁移代码
 
     #url("project/autotestapi/", views.AutotestApi.as_view()),#迁移代码
+    # 设置公用方法 高靖宇
+    url(r'api/getProjectList', common.project.as_view()),
+    url(r'api/group', ApiDoc.Group.as_view()),
+
 
     url(r'project/add_project', AddProject.as_view()),
 
@@ -48,7 +53,7 @@ urlpatterns = [
     url(r'global/del_host', DelHost.as_view()),
     url(r'global/disable_host', DisableHost.as_view()),
     url(r'global/enable_host', EnableHost.as_view()),
-    url(r'api/group', ApiDoc.Group.as_view()),
+    # url(r'api/group', ApiDoc.Group.as_view()),
     url(r'api/add_group', ApiDoc.AddGroup.as_view()),
     url(r'api/update_name_group', ApiDoc.UpdateNameGroup.as_view()),
     url(r'api/del_group', ApiDoc.DelGroup.as_view()),
@@ -67,6 +72,11 @@ urlpatterns = [
     url(r'api/Download', ApiDoc.DownLoad.as_view()),
     url(r'api/download_doc', ApiDoc.download_doc),
     url(r'automation/group', Case.Group.as_view()),
+
+
+
+
+
     url(r'automation/add_group', Case.AddGroup.as_view()),
     url(r'automation/del_group', Case.DelGroup.as_view()),
     url(r'automation/update_name_group', Case.UpdateNameGroup.as_view()),

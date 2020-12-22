@@ -142,6 +142,12 @@ export const addApiDetail = (headers, params) => {
 export const getApiGroupList = (headers, params) => {
     return axios.get(`${test}/api/api/group`, {params: params, headers: headers}).then(res => res.data);
 };
+// add by  gaojingyu
+export const getProjectList = (headers, params) => {
+    return axios.get(`${test}/api/api/getProjectList`, {params: params, headers: headers}).then(res => res.data);
+};
+
+
 // 添加接口分组
 export const addApiGroup = (headers, params) => {
     return axios.post(`${test}/api/api/add_group`, params, {headers}).then(res => res.data);

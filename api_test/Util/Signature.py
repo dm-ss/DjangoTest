@@ -2,7 +2,6 @@
 
 # @Time    : 2019/12/13 22:42
 
-# @Author  : litao
 
 # @Project : api_automation_test
 
